@@ -37,7 +37,7 @@
     makeAPICall(
       API_URL + "?project=" + encodeURIComponent(project),
       function (error) {
-        if (!demo || error) {
+        if (error || !demo) {
           return;
         }
 
@@ -52,7 +52,8 @@
           2
         );
 
-        document.body.appendChild(node);
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(node);
       }
     );
   } catch (error) {

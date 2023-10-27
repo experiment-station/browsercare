@@ -3,9 +3,9 @@
     <img src="https://browser.care/logo.png" width="72">
   </p>
 
-  <h1>@browsercare/web</h1>
+  <h1>@browsercare/demo</h1>
 
   <p>
-    Main web application.
+    Source code of <a href="https://demo.browser.care">demo.browser.care</a>
   </p>
 </div>

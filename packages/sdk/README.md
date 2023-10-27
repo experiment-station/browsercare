@@ -3,9 +3,9 @@
     <img src="https://browser.care/logo.png" width="72">
   </p>
 
-  <h1>@browsercare/web</h1>
+  <h1>@browsercare/sdk</h1>
 
   <p>
-    Main web application.
+    JavaScript SDK for <a href="https://browser.care">browser.care</a>
   </p>
 </div>

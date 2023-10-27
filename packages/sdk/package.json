@@ -9,5 +9,7 @@
     "email": "browsercare@zebrastik.com",
     "url": "https://zebrastik.com"
   },
-  "private": false
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
-  if (request.nextUrl.pathname.startsWith("/api")) {
+  if (
+    request.nextUrl.pathname.startsWith("/api") ||
+    request.nextUrl.pathname.startsWith("/cdn")
+  ) {
     response.headers.append("Access-Control-Allow-Origin", "*");
   }
 

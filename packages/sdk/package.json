@@ -1,0 +1,12 @@
+{
+  "name": "@browsercare/sdk",
+  "version": "0.1.0",
+  "description": "JavaScript SDK for browsercare",
+  "main": "index.js",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": {
+    "name": "zebrastik LLC",
+    "email": "browsercare@zebrastik.com",
+    "url": "https://zebrastik.com"
+  }
+}

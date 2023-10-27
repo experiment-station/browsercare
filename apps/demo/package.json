@@ -1,0 +1,13 @@
+{
+  "name": "@browsercare/demo",
+  "version": "0.1.0",
+  "author": {
+    "name": "zebrastik LLC",
+    "email": "browsercare@zebrastik.com",
+    "url": "https://zebrastik.com"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@browsercare/sdk": "workspace:*"
+  }
+}

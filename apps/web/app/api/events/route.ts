@@ -9,5 +9,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ success: false });
   }
 
-  return NextResponse.json({ success: true, project, userAgent });
+  return NextResponse.json({ success: true });
 }

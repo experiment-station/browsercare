@@ -9,3 +9,9 @@
     JavaScript SDK for <a href="https://browser.care">browser.care</a>
   </p>
 </div>
+
+```html
+<head>
+  <script src="https://unpkg.com/@browsercare/sdk?project=<your_project_id>" defer></script>
+</head>
+```

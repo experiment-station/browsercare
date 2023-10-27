@@ -31,7 +31,7 @@
 
     var API_URL =
       env === "production"
-        ? "https://browser.care/api/events"
+        ? "https://www.browser.care/api/events"
         : "http://localhost:3000/api/events";
 
     makeAPICall(

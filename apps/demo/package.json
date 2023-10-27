@@ -9,8 +9,5 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@browsercare/sdk": "workspace:*"
-  },
-  "scripts": {
-    "build": "rm -rf public && mkdir public && cp -r src/* public && cp ./node_modules/@browsercare/sdk/index.js public"
   }
 }

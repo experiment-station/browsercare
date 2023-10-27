@@ -1,0 +1,20 @@
+{
+  "name": "browsercare",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commitlint": "commitlint --edit"
+  },
+  "keywords": [],
+  "author": {
+    "name": "zebrastik LLC",
+    "email": "browsercare@zebrastik.com",
+    "url": "https://zebrastik.com"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "husky": "^8.0.3"
+  }
+}

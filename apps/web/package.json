@@ -17,9 +17,14 @@
     "@supabase/supabase-js": "^2.38.4",
     "@tremor/react": "^3.10.0",
     "@ua-parser-js/pro-business": "2.0.0-beta.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "next": "14.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7",
+    "ts-deepmerge": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

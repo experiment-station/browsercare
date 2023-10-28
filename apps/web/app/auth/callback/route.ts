@@ -12,7 +12,11 @@ export async function GET(request: Request) {
       const cookieStore = cookies();
       const supabase = createSupabaseServerClient(cookieStore);
 
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+
+      if (data.user?.email !== "altay@zebrastik.com") {
+        throw new Error("You are not allowed to sign in.");
+      }
 
       if (!error) {
         return NextResponse.redirect(new URL(`/${next.slice(1)}`, request.url));

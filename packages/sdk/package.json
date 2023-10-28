@@ -1,6 +1,6 @@
 {
   "name": "@browsercare/sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JavaScript SDK for browser.care",
   "main": "index.js",
   "license": "SEE LICENSE IN LICENSE.md",

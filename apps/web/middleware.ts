@@ -3,6 +3,12 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const enhanceHeaders = (request: NextRequest) => {
   const headers = request.headers;
+
+  console.log("request.url", request.url);
+  console.log("request.nexturl", request.nextUrl.toString());
+  console.log("vercel_url", process.env.VERCEL_URL);
+  console.log("next_public_vercel_url", process.env.NEXT_PUBLIC_VERCEL_URL);
+
   headers.append("x-url", request.nextUrl.toString());
   return request;
 };

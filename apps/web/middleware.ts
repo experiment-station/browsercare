@@ -1,6 +1,12 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const enhanceHeaders = (request: NextRequest) => {
+  const headers = request.headers;
+  headers.append("x-url", request.url);
+  return request;
+};
+
 const getSupabaseAuthSession = async (request: NextRequest) => {
   let response = NextResponse.next({
     request: {
@@ -58,18 +64,16 @@ const getSupabaseAuthSession = async (request: NextRequest) => {
 };
 
 export async function middleware(request: NextRequest) {
+  enhanceHeaders(request);
+
   const { authSession, response } = await getSupabaseAuthSession(request);
   const { pathname } = new URL(request.url);
 
-  if (pathname.startsWith("/auth")) {
+  if (authSession.data.session || pathname.startsWith("/auth")) {
     return response;
   }
 
-  if (!authSession.data.session) {
-    return NextResponse.redirect(new URL("/auth/sign-in", request.url));
-  }
-
-  return response;
+  return NextResponse.redirect(new URL("/auth/sign-in", request.url));
 }
 
 export const config = {

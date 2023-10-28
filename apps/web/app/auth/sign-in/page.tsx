@@ -1,5 +1,5 @@
-import { Title, Button, Text } from "@tremor/react";
-import { cookies } from "next/headers";
+import { Title, Button } from "@tremor/react";
+import { cookies, headers } from "next/headers";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
@@ -9,14 +9,12 @@ export default function Page() {
     "use server";
 
     const supabase = createSupabaseServerClient(cookies());
+    const redirectURL = new URL("/auth/callback", headers().get("x-url")!);
 
     const result = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: new URL(
-          "/auth/callback",
-          process.env.NEXT_PUBLIC_VERCEL_URL
-        ).toString(),
+        redirectTo: redirectURL.toString(),
       },
     });
 

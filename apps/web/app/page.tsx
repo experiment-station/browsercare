@@ -1,17 +1,13 @@
-import Image from "next/image";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createSupabaseServerClient(cookies());
+  const eventsQuery = await supabase.from("events").select("*");
+
   return (
-    <main className="flex justify-center min-h-screen">
-      <div className="my-10">
-        <Image
-          className="border border-neutral-700 rounded-full"
-          src="/logo.svg"
-          alt="browsercare"
-          width={120}
-          height={120}
-        />
-      </div>
+    <main className="flex justify-center items-center min-h-screen">
+      {JSON.stringify(eventsQuery.data)}
     </main>
   );
 }

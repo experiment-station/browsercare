@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseServiceClient } from "@/lib/supabase";
+import { createSupabaseServiceClient } from "@/lib/supabase/service";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -17,8 +17,9 @@ export async function GET(request: NextRequest) {
 
   try {
     const [organizationName, projectName] = projectId.split("/");
+    const supabase = createSupabaseServiceClient();
 
-    const { data: organization } = await supabaseServiceClient
+    const { data: organization } = await supabase
       .from("organizations")
       .select("*")
       .eq("name", organizationName)
@@ -35,7 +36,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const { data: project } = await supabaseServiceClient
+    const { data: project } = await supabase
       .from("projects")
       .select("*")
       .eq("name", projectName)
@@ -50,7 +51,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    await supabaseServiceClient.from("events").insert({
+    await supabase.from("events").insert({
       project_id: project.id,
       user_agent: userAgent,
     });

@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const enhanceHeaders = (request: NextRequest) => {
   const headers = request.headers;
-  headers.append("x-url", request.url);
+  headers.append("x-url", request.nextUrl.toString());
   return request;
 };
 

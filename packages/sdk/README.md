@@ -11,7 +11,8 @@
 </div>
 
 ```html
-<head>
-  <script src="https://unpkg.com/@browsercare/sdk?project=<your_project_id>" defer></script>
-</head>
+<script
+  src="https://unpkg.com/@browsercare/sdk?project=<your_project_id>"
+  defer
+></script>
 ```

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { gtAmerica, gtAmericaMono } from "./fonts";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "browsercare",
@@ -16,14 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" sizes="any" />
+
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased dark",
-          gtAmerica.variable,
-          gtAmericaMono.variable
-        )}
+        className={`font-sans antialiased ${gtAmerica.variable} ${gtAmericaMono.variable}`}
       >
-        {children}
+        <main className="max-w-7xl min-h-screen mx-auto px-6 py-6 sm:px-8 flex-1">
+          {children}
+        </main>
       </body>
     </html>
   );

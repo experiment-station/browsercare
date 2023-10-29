@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { Container, Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
+
 import { gtAmerica, gtAmericaMono } from "./fonts";
-import "./globals.css";
+import "./tailwind.css";
+import "./theme-config.css";
 
 export const metadata: Metadata = {
-  title: "browsercare",
   description: "",
+  title: "browsercare",
 };
 
 export default function RootLayout({
@@ -13,15 +19,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <link rel="icon" href="/favicon.ico" sizes="any" />
+    <html
+      className={`${gtAmerica.variable} ${gtAmericaMono.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
+      <link href="/favicon.ico" rel="icon" sizes="any" />
 
-      <body
-        className={`font-sans antialiased ${gtAmerica.variable} ${gtAmericaMono.variable}`}
-      >
-        <main className="max-w-7xl min-h-screen mx-auto px-6 py-6 sm:px-8 flex-1">
-          {children}
-        </main>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
+          <Theme
+            accentColor="mint"
+            grayColor="gray"
+            radius="medium"
+            scaling="100%"
+          >
+            <Container my="6">{children}</Container>
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );

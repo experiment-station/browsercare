@@ -1,8 +1,8 @@
-import { Title, Button } from "@tremor/react";
-import { cookies, headers } from "next/headers";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Button, Title } from "@tremor/react";
+import { cookies, headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function Page() {
   async function handleSignIn() {
@@ -12,10 +12,10 @@ export default function Page() {
     const redirectURL = new URL("/auth/callback", headers().get("x-url")!);
 
     const result = await supabase.auth.signInWithOAuth({
-      provider: "github",
       options: {
         redirectTo: redirectURL.toString(),
       },
+      provider: "github",
     });
 
     redirect(result.data.url!);
@@ -26,7 +26,7 @@ export default function Page() {
       <Title>@browsercare/web</Title>
 
       <form action={handleSignIn} className="mt-4">
-        <Button type="submit" className="w-full">
+        <Button className="w-full" type="submit">
           <span className="flex items-center justify-center flex-row gap-2">
             <GitHubLogoIcon />
             <span>Sign in with GitHub</span>

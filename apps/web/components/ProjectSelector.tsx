@@ -1,7 +1,7 @@
 "use client";
 
-import { Select, SelectItem } from "@tremor/react";
 import { Database } from "@/types/supabase/database";
+import { Select, SelectItem } from "@tremor/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ export const ProjectSelector = (props: Props) => {
   return (
     <div className="max-w-sm">
       <Select
-        value={value}
+        enableClear={false}
         onValueChange={(value) => {
           setValue(value);
 
@@ -29,7 +29,7 @@ export const ProjectSelector = (props: Props) => {
 
           replace(`${pathname}?${params.toString()}`);
         }}
-        enableClear={false}
+        value={value}
       >
         {props.projects.map((project) => {
           const organization = props.organizations.find(

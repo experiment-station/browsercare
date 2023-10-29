@@ -1,18 +1,14 @@
 "use client";
-
-import { UAParser } from "@ua-parser-js/pro-business";
-import { StatusOnlineIcon } from "@heroicons/react/outline";
+import { Database } from "@/types/supabase/database";
 import {
-  Badge,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeaderCell,
   TableRow,
-  Text,
 } from "@tremor/react";
-import { Database } from "@/types/supabase/database";
+import { UAParser } from "@ua-parser-js/pro-business";
 
 type Event = Database["public"]["Tables"]["events"]["Row"];
 
@@ -22,10 +18,10 @@ const formatEvent = (event: Event) => {
   const browser = parser.getBrowser();
 
   return {
-    createdAt: event.created_at,
-    id: event.id,
-    device,
     browser,
+    createdAt: event.created_at,
+    device,
+    id: event.id,
   };
 };
 

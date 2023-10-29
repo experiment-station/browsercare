@@ -1,12 +1,13 @@
 import { createSupabaseServiceClient } from "@/lib/supabase/service";
+import { UAParser } from "@ua-parser-js/pro-business";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const projectId = searchParams.get("project");
+  const project = searchParams.get("project");
   const userAgent = request.headers.get("user-agent");
 
-  if (!projectId || !userAgent) {
+  if (!project || !userAgent) {
     return NextResponse.json(
       { message: 'Missing "project" or "user-agent"' },
       {
@@ -16,33 +17,16 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const [organizationName, projectName] = projectId.split("/");
     const supabase = createSupabaseServiceClient();
+    const [organizationName, projectName] = project.split("/");
 
-    const { data: organization } = await supabase
+    const organizationQuery = await supabase
       .from("organizations")
-      .select("*")
+      .select("id")
       .eq("name", organizationName)
       .single();
 
-    if (!organization) {
-      return NextResponse.json(
-        {
-          message: "Organization not found",
-        },
-        {
-          status: 404,
-        }
-      );
-    }
-
-    const { data: project } = await supabase
-      .from("projects")
-      .select("*")
-      .eq("name", projectName)
-      .single();
-
-    if (!project) {
+    if (!organizationQuery.data) {
       return NextResponse.json(
         { message: "Project not found" },
         {
@@ -51,8 +35,35 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const projectQuery = await supabase
+      .from("projects")
+      .select("id")
+      .eq("name", projectName)
+      .single();
+
+    if (!projectQuery.data) {
+      return NextResponse.json(
+        { message: "Project not found" },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    const uaParser = new UAParser(userAgent);
+    if (!uaParser.getBrowser().name) {
+      return NextResponse.json(
+        {
+          message: "Invalid user agent",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
     await supabase.from("events").insert({
-      project_id: project.id,
+      project_id: projectQuery.data.id,
       user_agent: userAgent,
     });
 

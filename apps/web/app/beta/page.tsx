@@ -1,3 +1,4 @@
+import { createSupabaseServiceClient } from "@/lib/supabase/service";
 import {
   Button,
   Container,
@@ -7,13 +8,20 @@ import {
   TextFieldInput,
   TextFieldRoot,
 } from "@radix-ui/themes";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   return (
     <form
-      action={async () => {
+      action={async (formData: FormData) => {
         "use server";
-        console.log("submit");
+        const email = formData.get("email");
+        if (typeof email !== "string") return;
+
+        const supabase = createSupabaseServiceClient();
+        await supabase.from("beta_signups").upsert({ email });
+
+        redirect("/beta/thanks");
       }}
     >
       <Container
@@ -30,7 +38,11 @@ export default async function Page() {
           </Text>
 
           <TextFieldRoot>
-            <TextFieldInput placeholder="Your e-mail address" type="email" />
+            <TextFieldInput
+              name="email"
+              placeholder="Your e-mail address"
+              type="email"
+            />
           </TextFieldRoot>
 
           <Button type="submit">Sign up</Button>

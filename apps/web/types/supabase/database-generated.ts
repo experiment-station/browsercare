@@ -1,131 +1,149 @@
 export type Json =
-  | string
-  | number
-  | boolean
-  | null
   | { [key: string]: Json | undefined }
   | Json[]
+  | boolean
+  | null
+  | number
+  | string;
 
 export interface Database {
   public: {
+    CompositeTypes: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
     Tables: {
+      beta_signups: {
+        Insert: {
+          created_at?: string;
+          email: string;
+          id?: number;
+        };
+        Relationships: [];
+        Row: {
+          created_at: string;
+          email: string;
+          id: number;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          id?: number;
+        };
+      };
       events: {
-        Row: {
-          created_at: string
-          id: number
-          project_id: number
-          user_agent: string
-        }
         Insert: {
-          created_at?: string
-          id?: number
-          project_id: number
-          user_agent: string
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          project_id?: number
-          user_agent?: string
-        }
+          created_at?: string;
+          id?: number;
+          project_id: number;
+          user_agent: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "events_project_id_fkey"
-            columns: ["project_id"]
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
+            columns: ["project_id"];
+            foreignKeyName: "events_project_id_fkey";
+            referencedColumns: ["id"];
+            referencedRelation: "projects";
           }
-        ]
-      }
-      members: {
+        ];
         Row: {
-          created_at: string | null
-          team_id: number
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          team_id: number
-          user_id: string
-        }
+          created_at: string;
+          id: number;
+          project_id: number;
+          user_agent: string;
+        };
         Update: {
-          created_at?: string | null
-          team_id?: number
-          user_id?: string
-        }
+          created_at?: string;
+          id?: number;
+          project_id?: number;
+          user_agent?: string;
+        };
+      };
+      members: {
+        Insert: {
+          created_at?: null | string;
+          team_id: number;
+          user_id: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "members_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
+            columns: ["team_id"];
+            foreignKeyName: "members_team_id_fkey";
+            referencedColumns: ["id"];
+            referencedRelation: "teams";
           },
           {
-            foreignKeyName: "members_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            columns: ["user_id"];
+            foreignKeyName: "members_user_id_fkey";
+            referencedColumns: ["id"];
+            referencedRelation: "users";
           }
-        ]
-      }
-      projects: {
+        ];
         Row: {
-          created_at: string
-          id: number
-          name: string
-          team_id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          name: string
-          team_id: number
-        }
+          created_at: null | string;
+          team_id: number;
+          user_id: string;
+        };
         Update: {
-          created_at?: string
-          id?: number
-          name?: string
-          team_id?: number
-        }
+          created_at?: null | string;
+          team_id?: number;
+          user_id?: string;
+        };
+      };
+      projects: {
+        Insert: {
+          created_at?: string;
+          id?: number;
+          name: string;
+          team_id: number;
+        };
         Relationships: [
           {
-            foreignKeyName: "projects_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
+            columns: ["team_id"];
+            foreignKeyName: "projects_team_id_fkey";
+            referencedColumns: ["id"];
+            referencedRelation: "teams";
           }
-        ]
-      }
-      teams: {
+        ];
         Row: {
-          created_at: string
-          id: number
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          name: string
-        }
+          created_at: string;
+          id: number;
+          name: string;
+          team_id: number;
+        };
         Update: {
-          created_at?: string
-          id?: number
-          name?: string
-        }
-        Relationships: []
-      }
-    }
+          created_at?: string;
+          id?: number;
+          name?: string;
+          team_id?: number;
+        };
+      };
+      teams: {
+        Insert: {
+          created_at?: string;
+          id?: number;
+          name: string;
+        };
+        Relationships: [];
+        Row: {
+          created_at: string;
+          id: number;
+          name: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          name?: string;
+        };
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      [_ in never]: never
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
+      [_ in never]: never;
+    };
+  };
 }

@@ -25,7 +25,7 @@ export const Header = () => (
             <Link
               href="/"
               style={{
-                color: "initial",
+                color: "inherit",
                 textDecoration: "none",
               }}
             >

@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
-import "@radix-ui/themes/styles.css";
 
 import { gtAmerica, gtAmericaMono } from "./fonts";
 import "./tailwind.css";
+import "@radix-ui/themes/styles.css";
+
 import "./theme-config.css";
 
 export const metadata: Metadata = {

@@ -14,16 +14,28 @@ import { HeaderActionButton } from "./HeaderActionButton";
 export const Header = () => (
   <header className="sticky">
     <Flex direction="column" gap="4" mt="4">
-      <Container>
+      <Container
+        px={{
+          initial: "6",
+          lg: "0",
+        }}
+      >
         <Flex justify="between">
-          <Link href="/">
-            <Flex align="center" gap="2">
+          <Flex align="center" asChild gap="2">
+            <Link
+              href="/"
+              style={{
+                color: "initial",
+                textDecoration: "none",
+              }}
+            >
               <Card>
                 <Inset>
                   <Image
                     alt="browser.care logo"
                     height="32"
                     src="/logo.svg"
+                    style={{ display: "block" }}
                     width="32"
                   />
                 </Inset>
@@ -32,8 +44,8 @@ export const Header = () => (
               <Heading size="4" weight="medium">
                 browsercare
               </Heading>
-            </Flex>
-          </Link>
+            </Link>
+          </Flex>
 
           <HeaderActionButton />
         </Flex>

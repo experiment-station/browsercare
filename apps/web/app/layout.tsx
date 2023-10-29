@@ -5,10 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
 
 import { gtAmerica, gtAmericaMono } from "./fonts";
-import "./tailwind.css";
-import "@radix-ui/themes/styles.css";
-
-import "./theme-config.css";
+import "./style.css";
 
 export const metadata: Metadata = {
   description: "",
@@ -42,7 +39,15 @@ export default function RootLayout({
             scaling="100%"
           >
             <Header />
-            <Container my="6">{children}</Container>
+            <Container
+              my="6"
+              px={{
+                initial: "6",
+                lg: "0",
+              }}
+            >
+              {children}
+            </Container>
           </Theme>
         </ThemeProvider>
       </body>

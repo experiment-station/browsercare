@@ -138,6 +138,10 @@ const config: Config = {
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
 
+  corePlugins: {
+    preflight: false,
+  },
+
   darkMode: "class",
 
   theme: {

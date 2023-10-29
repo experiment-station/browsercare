@@ -1,67 +1,10 @@
-import { type CookieOptions, createServerClient } from "@supabase/ssr";
+import { getSupabaseAuthSession } from "@/lib/supabase/auth";
 import { type NextRequest, NextResponse } from "next/server";
 
-const enhanceHeaders = (request: NextRequest) => {
-  const headers = request.headers;
-  headers.append("x-url", request.nextUrl.toString());
-  return request;
-};
+import { enhanceHeaders } from "./lib/utils";
 
-const getSupabaseAuthSession = async (request: NextRequest) => {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value;
-        },
-        remove(name, options) {
-          request.cookies.delete({
-            name,
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.delete({
-            name,
-            ...options,
-          });
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          });
-        },
-      },
-    }
-  );
-
-  const authSession = await supabase.auth.getSession();
-
-  return { authSession, response };
-};
+const publicRoutes = ["/", "/demo"];
+const publicOnlyRoutes = ["/auth/sign-in", "/beta", "/beta/thanks"];
 
 export async function middleware(request: NextRequest) {
   enhanceHeaders(request);
@@ -69,16 +12,19 @@ export async function middleware(request: NextRequest) {
   const { authSession, response } = await getSupabaseAuthSession(request);
   const { pathname } = new URL(request.url);
 
-  if (
-    pathname === "/" ||
-    pathname.startsWith("/auth") ||
-    pathname.startsWith("/demo") ||
-    pathname.startsWith("/beta")
-  ) {
+  if (publicRoutes.includes(pathname)) {
     return response;
   }
 
   if (authSession.data.session) {
+    if (publicOnlyRoutes.includes(pathname)) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    return response;
+  }
+
+  if (publicOnlyRoutes.includes(pathname)) {
     return response;
   }
 

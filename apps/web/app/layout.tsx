@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
+import { Analytics } from "@vercel/analytics/react";
 
 import { gtAmerica, gtAmericaMono } from "./fonts";
 import "./style.css";
@@ -50,6 +51,8 @@ export default function RootLayout({
             </Container>
           </Theme>
         </ThemeProvider>
+
+        <Analytics />
       </body>
     </html>
   );

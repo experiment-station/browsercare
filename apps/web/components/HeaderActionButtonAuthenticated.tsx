@@ -19,7 +19,7 @@ export const HeaderActionButtonAuthenticated = () => {
     <Button asChild>
       <Link href="/dashboard">
         <DashboardIcon />
-        Go to Dashboard
+        Dashboard
       </Link>
     </Button>
   );

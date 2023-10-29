@@ -22,6 +22,7 @@
     "radix-themes-tw": "^0.0.8",
     "react": "^18",
     "react-dom": "^18",
+    "remeda": "^1.28.0",
     "ts-deepmerge": "^6.2.0"
   },
   "devDependencies": {

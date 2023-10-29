@@ -69,7 +69,12 @@ export async function middleware(request: NextRequest) {
   const { authSession, response } = await getSupabaseAuthSession(request);
   const { pathname } = new URL(request.url);
 
-  if (pathname === "/" || pathname.startsWith("/auth")) {
+  if (
+    pathname === "/" ||
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/demo") ||
+    pathname.startsWith("/beta")
+  ) {
     return response;
   }
 
@@ -77,7 +82,7 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  return NextResponse.redirect(new URL("/", request.url));
+  return NextResponse.redirect(new URL("/auth/sign-in", request.url));
 }
 
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher

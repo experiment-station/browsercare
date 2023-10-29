@@ -36,8 +36,10 @@ export default async function Page() {
           <Box>
             <TextFieldRoot>
               <TextFieldInput
+                autoFocus
                 name="email"
                 placeholder="Your e-mail address"
+                required
                 type="email"
               />
             </TextFieldRoot>

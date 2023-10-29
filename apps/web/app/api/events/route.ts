@@ -18,15 +18,15 @@ export async function GET(request: NextRequest) {
 
   try {
     const supabase = createSupabaseServiceClient();
-    const [organizationName, projectName] = project.split("/");
+    const [teamName, projectName] = project.split("/");
 
-    const organizationQuery = await supabase
-      .from("organizations")
+    const teamQuery = await supabase
+      .from("teams")
       .select("id")
-      .eq("name", organizationName)
+      .eq("name", teamName)
       .single();
 
-    if (!organizationQuery.data) {
+    if (!teamQuery.data) {
       return NextResponse.json(
         { message: "Project not found" },
         {

@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export const HeaderActionButtonAuthenticated = () => {
   const pathname = usePathname();
 
-  return pathname.startsWith("/dashboard") ? (
+  return pathname.startsWith("/projects") ? (
     <Button asChild>
       <Link href="/auth/sign-out">
         <ExitIcon />
@@ -17,9 +17,9 @@ export const HeaderActionButtonAuthenticated = () => {
     </Button>
   ) : (
     <Button asChild>
-      <Link href="/dashboard">
+      <Link href="/projects">
         <DashboardIcon />
-        Dashboard
+        Projects
       </Link>
     </Button>
   );

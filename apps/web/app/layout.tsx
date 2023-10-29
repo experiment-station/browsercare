@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Header/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/react";
@@ -37,15 +37,17 @@ export default function RootLayout({
             accentColor="mint"
             grayColor="gray"
             radius="medium"
-            scaling="100%"
+            scaling="95%"
           >
             <Header />
+
             <Container
               my="6"
               px={{
                 initial: "6",
                 lg: "0",
               }}
+              size="3"
             >
               {children}
             </Container>

@@ -19,6 +19,7 @@ export const Header = () => (
           initial: "6",
           lg: "0",
         }}
+        size="3"
       >
         <Flex justify="between">
           <Flex align="center" asChild gap="2">

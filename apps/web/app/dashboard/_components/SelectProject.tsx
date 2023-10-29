@@ -7,9 +7,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 type Props = {
-  organizations: Array<Tables<"organizations">>;
   projects: Array<Tables<"projects">>;
   selectedProjectId: Tables<"projects">["id"];
+  teams: Array<Tables<"teams">>;
 };
 
 export const SelectProject = (props: Props) => {
@@ -32,13 +32,11 @@ export const SelectProject = (props: Props) => {
 
       <Select.Content>
         {props.projects.map((project) => {
-          const organization = props.organizations.find(
-            (organization) => organization.id === project.organization_id
-          );
+          const team = props.teams.find((team) => team.id === project.team_id);
 
           return (
             <Select.Item key={project.id} value={project.id.toString()}>
-              {organization!.name}/{project.name}
+              {team!.name}/{project.name}
             </Select.Item>
           );
         })}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Header } from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
             radius="medium"
             scaling="100%"
           >
+            <Header />
             <Container my="6">{children}</Container>
           </Theme>
         </ThemeProvider>

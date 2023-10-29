@@ -1,4 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { addTeamMember } from "@/lib/teams";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -14,16 +15,13 @@ export async function GET(request: Request) {
 
       const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
-      if (data.user?.email !== "altay@zebrastik.com") {
-        throw new Error("You are not allowed to sign in.");
-      }
-
       if (!error) {
+        await addTeamMember(data.user.id);
         return NextResponse.redirect(new URL(`/${next.slice(1)}`, request.url));
       }
     }
 
-    return NextResponse.redirect(new URL("/auth/sign-in", request.url));
+    throw new Error("Code is not provided.");
   } catch (error) {
     return NextResponse.json(
       {

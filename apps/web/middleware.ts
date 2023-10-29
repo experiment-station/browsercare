@@ -1,5 +1,5 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { type CookieOptions, createServerClient } from "@supabase/ssr";
+import { type NextRequest, NextResponse } from "next/server";
 
 const enhanceHeaders = (request: NextRequest) => {
   const headers = request.headers;
@@ -22,6 +22,21 @@ const getSupabaseAuthSession = async (request: NextRequest) => {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
+        remove(name, options) {
+          request.cookies.delete({
+            name,
+            ...options,
+          });
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          });
+          response.cookies.delete({
+            name,
+            ...options,
+          });
+        },
         set(name: string, value: string, options: CookieOptions) {
           request.cookies.set({
             name,
@@ -36,21 +51,6 @@ const getSupabaseAuthSession = async (request: NextRequest) => {
           response.cookies.set({
             name,
             value,
-            ...options,
-          });
-        },
-        remove(name, options) {
-          request.cookies.delete({
-            name,
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.delete({
-            name,
             ...options,
           });
         },
@@ -69,11 +69,15 @@ export async function middleware(request: NextRequest) {
   const { authSession, response } = await getSupabaseAuthSession(request);
   const { pathname } = new URL(request.url);
 
-  if (authSession.data.session || pathname.startsWith("/auth")) {
+  if (pathname === "/" || pathname.startsWith("/auth")) {
     return response;
   }
 
-  return NextResponse.redirect(new URL("/auth/sign-in", request.url));
+  if (authSession.data.session) {
+    return response;
+  }
+
+  return NextResponse.redirect(new URL("/", request.url));
 }
 
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher

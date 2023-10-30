@@ -5,11 +5,15 @@ import { enhanceHeaders } from "./lib/utils";
 
 const publicRoutes = [
   "/",
+
   "/auth/callback",
   "/auth/sign-in",
   "/auth/sign-out",
+
+  "/sign-in",
   "/beta",
   "/beta/thanks",
+
   "/demo",
 ];
 
@@ -27,7 +31,7 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  return NextResponse.redirect(new URL("/", request.url));
+  return NextResponse.redirect(new URL("/sign-in", request.url));
 }
 
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher

@@ -1,6 +1,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseServiceClient } from "@/lib/supabase/service";
-import { Flex, Heading, Separator } from "@radix-ui/themes";
+import { Flex, Heading } from "@radix-ui/themes";
 import { cookies } from "next/headers";
 
 import { Events } from "./Events";

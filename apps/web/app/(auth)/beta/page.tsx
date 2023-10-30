@@ -13,11 +13,11 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   return (
     <>
-      <Heading size="6">Sign up for the private beta</Heading>
+      <Heading size="6">Join the private beta</Heading>
 
       <Text color="gray">
-        Become an early adopter and help us to develop the tool that you need to
-        fine-tune your supported browser coverage.
+        Become a friend of browser.care and help us to develop the tool that you
+        need to adjust your supported browser coverage.
       </Text>
 
       <form
@@ -45,7 +45,7 @@ export default async function Page() {
             </TextFieldRoot>
           </Box>
 
-          <Button type="submit">Sign up</Button>
+          <Button type="submit">Submit</Button>
         </Flex>
       </form>
     </>

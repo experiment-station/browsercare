@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { Button, Flex } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
@@ -13,17 +13,9 @@ export const HeaderActionButton = async () => {
 
   if (session === null) {
     return (
-      <Flex align="center" gap="2">
-        <form action="/auth/sign-in" method="post">
-          <Button type="submit" variant="outline">
-            Sign in
-          </Button>
-        </form>
-
-        <Button asChild>
-          <Link href="/beta">Sign up</Link>
-        </Button>
-      </Flex>
+      <Button asChild>
+        <Link href="/beta">Join beta</Link>
+      </Button>
     );
   }
 

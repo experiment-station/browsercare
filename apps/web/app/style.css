@@ -9,6 +9,7 @@ body {
 }
 
 .radix-themes {
-  --default-font-family: var(--font-gt-america) !important;
-  --code-font-family: var(--font-gt-america-mono) !important;
+  --default-font-family: var(--font-gt-america);
+  --code-font-family: var(--font-gt-america-mono);
+  --cursor-button: pointer;
 }

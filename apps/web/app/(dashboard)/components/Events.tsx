@@ -14,10 +14,12 @@ const decodeEvent = (event: Tables<"events">) => {
 type DecodedEvent = ReturnType<typeof decodeEvent>;
 
 const getGroupCounts = (eventGroups: Record<string, DecodedEvent[]>) =>
-  Object.entries(eventGroups).map(([key, value]) => ({
-    name: key,
-    value: value.length,
-  }));
+  Object.entries(eventGroups)
+    .map(([key, value]) => ({
+      name: key,
+      value: value.length,
+    }))
+    .sort((a, b) => b.value - a.value);
 
 export const Events = ({ data = [] }: { data: Tables<"events">[] }) => {
   const events = data.map(decodeEvent);

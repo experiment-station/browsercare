@@ -43,7 +43,7 @@ export default async function Page() {
         {session === null ? (
           <Flex gap="2">
             <Button asChild size="3">
-              <Link href="/beta">Sign up for the private beta</Link>
+              <Link href="/beta">Join the private beta</Link>
             </Button>
 
             <Button asChild size="3" variant="outline">

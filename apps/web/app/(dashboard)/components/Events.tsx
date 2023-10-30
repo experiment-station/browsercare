@@ -1,5 +1,5 @@
 import { Tables } from "@/types/supabase/database";
-import { Box, Card, Grid, Text } from "@radix-ui/themes";
+import { Box, Card, Grid, ScrollArea, Text } from "@radix-ui/themes";
 import { BarList } from "@tremor/react";
 import { UAParser } from "@ua-parser-js/pro-business";
 import { groupBy } from "remeda";
@@ -21,6 +21,14 @@ const getGroupCounts = (eventGroups: Record<string, DecodedEvent[]>) =>
     }))
     .sort((a, b) => b.value - a.value);
 
+const BarListWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Box my="2">
+    <ScrollArea scrollbars="vertical" style={{ height: 180 }} type="auto">
+      <Box pr="5">{children}</Box>
+    </ScrollArea>
+  </Box>
+);
+
 export const Events = ({ data = [] }: { data: Tables<"events">[] }) => {
   const events = data.map(decodeEvent);
 
@@ -29,20 +37,20 @@ export const Events = ({ data = [] }: { data: Tables<"events">[] }) => {
       <Card>
         <Text weight="medium">Browser</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="cyan"
             data={getGroupCounts(
               groupBy(events, (event) => event.browser.name)
             )}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
 
       <Card>
         <Text weight="medium">Browser version</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="cyan"
             data={getGroupCounts(
@@ -52,55 +60,55 @@ export const Events = ({ data = [] }: { data: Tables<"events">[] }) => {
               )
             )}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
 
       <Card>
         <Text weight="medium">Browser engine</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="cyan"
             data={getGroupCounts(groupBy(events, (event) => event.engine.name))}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
 
       <Card>
         <Text weight="medium">Device type</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="pink"
             data={getGroupCounts(
               groupBy(events, (event) => event.device.type || "desktop")
             )}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
 
       <Card>
         <Text weight="medium">Device vendor</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="pink"
             data={getGroupCounts(
               groupBy(events, (event) => event.device.vendor)
             )}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
 
       <Card>
         <Text weight="medium">Operating system</Text>
 
-        <Box my="2">
+        <BarListWrapper>
           <BarList
             color="pink"
             data={getGroupCounts(groupBy(events, (event) => event.os.name))}
           />
-        </Box>
+        </BarListWrapper>
       </Card>
     </Grid>
   );

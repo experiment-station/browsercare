@@ -14,7 +14,7 @@ export async function GET(request: Request) {
       const cookieStore = cookies();
       const supabase = createSupabaseServerClient(cookieStore);
 
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data } = await supabase.auth.exchangeCodeForSession(code);
 
       if (ALLOWED_USER_EMAILS.includes(data?.user?.email ?? "")) {
         return NextResponse.redirect(new URL(`/${next.slice(1)}`, request.url));

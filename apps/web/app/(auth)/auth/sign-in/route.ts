@@ -2,7 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const supabase = createSupabaseServerClient(cookies());
   const redirectURL = new URL("/auth/callback", request.url);
   redirectURL.searchParams.set("next", "/projects");
@@ -14,5 +14,7 @@ export async function GET(request: NextRequest) {
     provider: "github",
   });
 
-  return NextResponse.redirect(result.data.url!);
+  return NextResponse.redirect(result.data.url!, {
+    status: 301,
+  });
 }

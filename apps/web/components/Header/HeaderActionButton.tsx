@@ -14,9 +14,11 @@ export const HeaderActionButton = async () => {
   if (session === null) {
     return (
       <Flex align="center" gap="2">
-        <Button asChild variant="outline">
-          <Link href="/auth/sign-in">Sign in</Link>
-        </Button>
+        <form action="/auth/sign-in" method="post">
+          <Button type="submit" variant="outline">
+            Sign in
+          </Button>
+        </form>
 
         <Button asChild>
           <Link href="/beta">Sign up</Link>

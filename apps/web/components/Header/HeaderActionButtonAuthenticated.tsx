@@ -9,12 +9,12 @@ export const HeaderActionButtonAuthenticated = () => {
   const pathname = usePathname();
 
   return pathname.startsWith("/projects") ? (
-    <Button asChild>
-      <Link href="/auth/sign-out">
+    <form action="/auth/sign-out" method="POST">
+      <Button type="submit">
         <ExitIcon />
         Sign out
-      </Link>
-    </Button>
+      </Button>
+    </form>
   ) : (
     <Button asChild>
       <Link href="/projects">

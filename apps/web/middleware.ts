@@ -3,8 +3,15 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { enhanceHeaders } from "./lib/utils";
 
-const publicRoutes = ["/", "/demo"];
-const publicOnlyRoutes = ["/auth/sign-in", "/beta", "/beta/thanks"];
+const publicRoutes = [
+  "/",
+  "/auth/callback",
+  "/auth/sign-in",
+  "/auth/sign-out",
+  "/beta",
+  "/beta/thanks",
+  "/demo",
+];
 
 export async function middleware(request: NextRequest) {
   enhanceHeaders(request);
@@ -17,18 +24,10 @@ export async function middleware(request: NextRequest) {
   }
 
   if (authSession.data.session) {
-    if (publicOnlyRoutes.includes(pathname)) {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-
     return response;
   }
 
-  if (publicOnlyRoutes.includes(pathname)) {
-    return response;
-  }
-
-  return NextResponse.redirect(new URL("/auth/sign-in", request.url));
+  return NextResponse.redirect(new URL("/", request.url));
 }
 
 // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher

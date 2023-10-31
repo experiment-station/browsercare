@@ -1,6 +1,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseServiceClient } from "@/lib/supabase/service";
-import { Flex, Heading } from "@radix-ui/themes";
+import { Flex, Heading, Text } from "@radix-ui/themes";
 import { cookies } from "next/headers";
 
 import { Events } from "./Events";
@@ -25,7 +25,10 @@ export const Project = async (props: Props) => {
     .from("projects")
     .select("name, teams(name), events(*)")
     .eq("id", "type" in props ? DEMO_PROJECT_ID : props.id)
-    .single();
+    .limit(1, { foreignTable: "teams" })
+    .limit(1000, { foreignTable: "events" })
+    .order("created_at", { ascending: false, foreignTable: "events" })
+    .maybeSingle();
 
   if (!query.data) {
     throw new Error("Project not found");
@@ -33,9 +36,15 @@ export const Project = async (props: Props) => {
 
   return (
     <Flex direction="column" gap="4">
-      <Heading>
-        {query.data.teams?.name}/{query.data.name}
-      </Heading>
+      <Flex direction="column" gap="2">
+        <Heading>
+          {query.data.teams?.name}/{query.data.name}
+        </Heading>
+
+        <Text color="gray">
+          Displaying data based on the last {query.data.events.length} events.
+        </Text>
+      </Flex>
 
       <Events data={query.data.events} />
     </Flex>

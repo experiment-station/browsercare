@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
 
     const projectQuery = await supabase
       .from("projects")
-      .select("id")
+      .select("id, is_active")
       .eq("name", projectName)
       .single();
 
@@ -46,6 +46,15 @@ export async function GET(request: NextRequest) {
         { message: "Project not found" },
         {
           status: 404,
+        }
+      );
+    }
+
+    if (!projectQuery.data.is_active) {
+      return NextResponse.json(
+        { message: "Project is not active" },
+        {
+          status: 400,
         }
       );
     }

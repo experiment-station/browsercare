@@ -1,149 +1,156 @@
 export type Json =
-  | { [key: string]: Json | undefined }
-  | Json[]
+  | string
+  | number
   | boolean
   | null
-  | number
-  | string;
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export interface Database {
   public: {
-    CompositeTypes: {
-      [_ in never]: never;
-    };
-    Enums: {
-      [_ in never]: never;
-    };
-    Functions: {
-      [_ in never]: never;
-    };
     Tables: {
       beta_signups: {
-        Insert: {
-          created_at?: string;
-          email: string;
-          id?: number;
-        };
-        Relationships: [];
         Row: {
-          created_at: string;
-          email: string;
-          id: number;
-        };
+          created_at: string
+          email: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: number
+        }
         Update: {
-          created_at?: string;
-          email?: string;
-          id?: number;
-        };
-      };
+          created_at?: string
+          email?: string
+          id?: number
+        }
+        Relationships: []
+      }
       events: {
-        Insert: {
-          created_at?: string;
-          id?: number;
-          project_id: number;
-          user_agent: string;
-        };
-        Relationships: [
-          {
-            columns: ["project_id"];
-            foreignKeyName: "events_project_id_fkey";
-            referencedColumns: ["id"];
-            referencedRelation: "projects";
-          }
-        ];
         Row: {
-          created_at: string;
-          id: number;
-          project_id: number;
-          user_agent: string;
-        };
-        Update: {
-          created_at?: string;
-          id?: number;
-          project_id?: number;
-          user_agent?: string;
-        };
-      };
-      members: {
+          created_at: string
+          id: number
+          project_id: number
+          user_agent: string
+        }
         Insert: {
-          created_at?: null | string;
-          team_id: number;
-          user_id: string;
-        };
+          created_at?: string
+          id?: number
+          project_id: number
+          user_agent: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          project_id?: number
+          user_agent?: string
+        }
         Relationships: [
           {
-            columns: ["team_id"];
-            foreignKeyName: "members_team_id_fkey";
-            referencedColumns: ["id"];
-            referencedRelation: "teams";
+            foreignKeyName: "events_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      members: {
+        Row: {
+          created_at: string | null
+          team_id: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          team_id: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          team_id?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
           },
           {
-            columns: ["user_id"];
-            foreignKeyName: "members_user_id_fkey";
-            referencedColumns: ["id"];
-            referencedRelation: "users";
+            foreignKeyName: "members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           }
-        ];
-        Row: {
-          created_at: null | string;
-          team_id: number;
-          user_id: string;
-        };
-        Update: {
-          created_at?: null | string;
-          team_id?: number;
-          user_id?: string;
-        };
-      };
+        ]
+      }
       projects: {
+        Row: {
+          created_at: string
+          id: number
+          is_active: boolean
+          name: string
+          team_id: number
+        }
         Insert: {
-          created_at?: string;
-          id?: number;
-          name: string;
-          team_id: number;
-        };
+          created_at?: string
+          id?: number
+          is_active?: boolean
+          name: string
+          team_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          is_active?: boolean
+          name?: string
+          team_id?: number
+        }
         Relationships: [
           {
-            columns: ["team_id"];
-            foreignKeyName: "projects_team_id_fkey";
-            referencedColumns: ["id"];
-            referencedRelation: "teams";
+            foreignKeyName: "projects_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
           }
-        ];
-        Row: {
-          created_at: string;
-          id: number;
-          name: string;
-          team_id: number;
-        };
-        Update: {
-          created_at?: string;
-          id?: number;
-          name?: string;
-          team_id?: number;
-        };
-      };
+        ]
+      }
       teams: {
-        Insert: {
-          created_at?: string;
-          id?: number;
-          name: string;
-        };
-        Relationships: [];
         Row: {
-          created_at: string;
-          id: number;
-          name: string;
-        };
+          created_at: string
+          id: number
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+        }
         Update: {
-          created_at?: string;
-          id?: number;
-          name?: string;
-        };
-      };
-    };
+          created_at?: string
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }

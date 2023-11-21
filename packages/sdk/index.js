@@ -45,8 +45,7 @@
           {
             project: project,
             env: env,
-            userAgent: navigator.userAgent,
-            eventId: response.eventId,
+            event: response.event,
           },
           null,
           2

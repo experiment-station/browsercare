@@ -29,20 +29,50 @@ export interface Database {
       }
       events: {
         Row: {
+          browser_major: string
+          browser_name: string
+          browser_version: string
           created_at: string
+          device_model: string | null
+          device_type: string | null
+          device_vendor: string | null
+          engine_name: string | null
+          engine_version: string | null
           id: number
+          os_name: string | null
+          os_version: string | null
           project_id: number
           user_agent: string
         }
         Insert: {
+          browser_major: string
+          browser_name: string
+          browser_version: string
           created_at?: string
+          device_model?: string | null
+          device_type?: string | null
+          device_vendor?: string | null
+          engine_name?: string | null
+          engine_version?: string | null
           id?: number
+          os_name?: string | null
+          os_version?: string | null
           project_id: number
           user_agent: string
         }
         Update: {
+          browser_major?: string
+          browser_name?: string
+          browser_version?: string
           created_at?: string
+          device_model?: string | null
+          device_type?: string | null
+          device_vendor?: string | null
+          engine_name?: string | null
+          engine_version?: string | null
           id?: number
+          os_name?: string | null
+          os_version?: string | null
           project_id?: number
           user_agent?: string
         }

@@ -60,10 +60,16 @@ export async function GET(request: NextRequest) {
     }
 
     const uaParser = new UAParser(userAgent);
-    if (!uaParser.getBrowser().name) {
+    const uaResult = uaParser.getResult();
+
+    if (
+      !uaResult.browser.name ||
+      !uaResult.browser.version ||
+      !uaResult.browser.major
+    ) {
       return NextResponse.json(
         {
-          message: "Invalid user agent",
+          message: "Could not parse user agent",
         },
         {
           status: 400,
@@ -71,16 +77,35 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const event = await supabase
+    const { data, error } = await supabase
       .from("events")
       .insert({
+        browser_major: uaResult.browser.major,
+        browser_name: uaResult.browser.name,
+        browser_version: uaResult.browser.version,
+        device_model: uaResult.device.model,
+        device_type: uaResult.device.type,
+        device_vendor: uaResult.device.vendor,
+        engine_name: uaResult.engine.name,
+        engine_version: uaResult.engine.version,
+        os_name: uaResult.os.name,
+        os_version: uaResult.os.version,
         project_id: projectQuery.data.id,
         user_agent: userAgent,
       })
-      .select("id")
+      .select("id, browser_name, browser_version, browser_major")
       .single();
 
-    return NextResponse.json({ eventId: event.data?.id });
+    if (error) {
+      return NextResponse.json(
+        { message: "Something went wrong" },
+        {
+          status: 500,
+        }
+      );
+    }
+
+    return NextResponse.json({ event: data });
   } catch (error) {
     return NextResponse.json(
       { message: "Something went wrong" },

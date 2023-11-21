@@ -71,12 +71,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    await supabase.from("events").insert({
-      project_id: projectQuery.data.id,
-      user_agent: userAgent,
-    });
+    const event = await supabase
+      .from("events")
+      .insert({
+        project_id: projectQuery.data.id,
+        user_agent: userAgent,
+      })
+      .select("id")
+      .single();
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ eventId: event.data?.id });
   } catch (error) {
     return NextResponse.json(
       { message: "Something went wrong" },

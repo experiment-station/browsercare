@@ -1,12 +1,12 @@
 {
   "name": "@browsercare/sdk",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "JavaScript SDK for browser.care",
   "main": "index.js",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "author": {
-    "name": "zebrastik LLC",
-    "email": "browsercare@zebrastik.com",
+    "name": "Altay",
+    "email": "altay@zebrastik.com",
     "url": "https://zebrastik.com"
   },
   "publishConfig": {

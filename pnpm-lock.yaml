@@ -53,9 +53,6 @@ importers:
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.0.0)(react-dom@18.2.0)(react@18.2.0)
-      radix-themes-tw:
-        specifier: ^0.0.8
-        version: 0.0.8
       react:
         specifier: ^18
         version: 18.2.0
@@ -4493,10 +4490,6 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
     dev: true
-
-  /radix-themes-tw@0.0.8:
-    resolution: {integrity: sha512-NPRRoahUlnYOQNfBHuGR/XFwJ4L2md59MGMbTmPZ11pwPFLeYnu4Lgqa0wcb8wiJSaiRzLA9vrWxj6suupDmdg==}
-    dev: false
 
   /ramda@0.29.1:
     resolution: {integrity: sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==}

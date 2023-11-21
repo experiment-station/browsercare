@@ -27,7 +27,6 @@
 
     var project = scriptUrl.searchParams.get("project");
     var env = scriptUrl.searchParams.get("env") || "production";
-    var demo = scriptUrl.searchParams.get("demo") || false;
 
     var API_URL =
       env === "production"
@@ -36,8 +35,8 @@
 
     makeAPICall(
       API_URL + "?project=" + encodeURIComponent(project),
-      function (error) {
-        if (error || !demo) {
+      function (error, response) {
+        if (error) {
           return;
         }
 
@@ -47,6 +46,7 @@
             project: project,
             env: env,
             userAgent: navigator.userAgent,
+            eventId: response.eventId,
           },
           null,
           2

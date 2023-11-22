@@ -12,17 +12,41 @@ import {
 import { BarList } from "@tremor/react";
 import { cookies } from "next/headers";
 
-const DEMO_PROJECT_ID = 3;
+import type { ProjectDataPeriod } from "../constants";
 
-type Props =
+type Props = {
+  period: ProjectDataPeriod;
+} & (
   | {
       id: number;
     }
   | {
       type: "demo";
-    };
+    }
+);
+
+const projectDataPeriodToDays = (period: ProjectDataPeriod) => {
+  switch (period) {
+    case "24h":
+      return 1;
+
+    case "7d":
+      return 7;
+
+    case "14d":
+      return 14;
+
+    case "30d":
+      return 30;
+
+    default:
+      throw new Error("Invalid period");
+  }
+};
 
 export const Project = async (props: Props) => {
+  const DEMO_PROJECT_ID = 3;
+
   const supabase =
     "type" in props
       ? createSupabaseServiceClient()
@@ -82,7 +106,7 @@ export const Project = async (props: Props) => {
     ].map(async ({ label, query }) => ({
       data: await supabase
         .rpc("get_event_summary", {
-          days: 7,
+          days: projectDataPeriodToDays(props.period),
           event_project_id: projectId,
           ...query,
         })
@@ -111,7 +135,7 @@ export const Project = async (props: Props) => {
                 style={{ height: 200 }}
                 type="auto"
               >
-                <Box pr="4">
+                <Box pr="5">
                   <BarList
                     color="cyan"
                     data={data!.map((item) => {

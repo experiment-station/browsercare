@@ -23,7 +23,7 @@ export default async function Page() {
         </CalloutText>
       </CalloutRoot>
 
-      <Project type="demo" />
+      <Project period="7d" type="demo" />
     </Flex>
   );
 }

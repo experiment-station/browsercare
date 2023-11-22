@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
         browser_name: uaResult.browser.name,
         browser_version: uaResult.browser.version,
         device_model: uaResult.device.model,
-        device_type: uaResult.device.type,
+        device_type: uaResult.device.type || "desktop",
         device_vendor: uaResult.device.vendor,
         engine_name: uaResult.engine.name,
         engine_version: uaResult.engine.version,

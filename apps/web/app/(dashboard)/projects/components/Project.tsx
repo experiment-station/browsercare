@@ -138,21 +138,23 @@ export const Project = async (props: Props) => {
                 <Box pr="5">
                   <BarList
                     color="cyan"
-                    data={data!.map((item) => {
-                      let name =
-                        item.grouped_column1 === null
-                          ? "Other"
-                          : item.grouped_column1;
+                    data={data!
+                      .sort((a, b) => b.event_count - a.event_count)
+                      .map((item) => {
+                        let name =
+                          item.grouped_column1 === null
+                            ? "Other"
+                            : item.grouped_column1;
 
-                      if (item.grouped_column2) {
-                        name += ` ${item.grouped_column2}`;
-                      }
+                        if (item.grouped_column2) {
+                          name += ` ${item.grouped_column2}`;
+                        }
 
-                      return {
-                        name,
-                        value: item.event_count,
-                      };
-                    })}
+                        return {
+                          name,
+                          value: item.event_count,
+                        };
+                      })}
                   />
                 </Box>
               </ScrollArea>

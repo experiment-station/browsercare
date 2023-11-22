@@ -36,27 +36,24 @@
     makeAPICall(
       API_URL + "?project=" + encodeURIComponent(project),
       function (error, response) {
-        if (error) {
-          return;
+        if (error) return;
+
+        if (project === "browsercare/demo") {
+          var node = document.createElement("pre");
+
+          node.innerHTML = JSON.stringify(
+            {
+              project: project,
+              env: env,
+              event: response.event,
+            },
+            null,
+            2
+          );
+
+          var body = document.getElementsByTagName("body")[0];
+          body.appendChild(node);
         }
-
-        if (env === "production") {
-          return;
-        }
-
-        var node = document.createElement("pre");
-        node.innerHTML = JSON.stringify(
-          {
-            project: project,
-            env: env,
-            event: response.event,
-          },
-          null,
-          2
-        );
-
-        var body = document.getElementsByTagName("body")[0];
-        body.appendChild(node);
       }
     );
   } catch (error) {

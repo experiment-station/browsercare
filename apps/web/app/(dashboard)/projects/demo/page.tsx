@@ -9,7 +9,11 @@ import {
 
 import { Project } from "../components/Project";
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { period?: string };
+}) {
   return (
     <Flex direction="column" gap="6">
       <CalloutRoot color="gray" size="3">
@@ -23,7 +27,7 @@ export default async function Page() {
         </CalloutText>
       </CalloutRoot>
 
-      <Project period="7d" type="demo" />
+      <Project demo period={searchParams.period} />
     </Flex>
   );
 }

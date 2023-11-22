@@ -14,14 +14,17 @@ import { cookies } from "next/headers";
 
 import type { ProjectDataPeriod } from "../constants";
 
+import { ProjectPeriodSelect } from "./ProjectPeriodSelect";
+
 type Props = {
-  period: ProjectDataPeriod;
+  period?: string;
 } & (
   | {
-      id: number;
+      demo: true;
     }
   | {
-      type: "demo";
+      demo?: boolean;
+      id: number;
     }
 );
 
@@ -44,15 +47,29 @@ const projectDataPeriodToDays = (period: ProjectDataPeriod) => {
   }
 };
 
+const normalizeProjectDataPeriod = (
+  period: Props["period"]
+): ProjectDataPeriod => {
+  switch (period) {
+    case "24h":
+    case "7d":
+    case "14d":
+    case "30d":
+      return period;
+
+    default:
+      return "24h";
+  }
+};
+
 export const Project = async (props: Props) => {
-  const DEMO_PROJECT_ID = 3;
+  const period = normalizeProjectDataPeriod(props.period);
 
-  const supabase =
-    "type" in props
-      ? createSupabaseServiceClient()
-      : createSupabaseServerClient(cookies());
+  const supabase = props.demo
+    ? createSupabaseServiceClient()
+    : createSupabaseServerClient(cookies());
 
-  const projectId = "type" in props ? DEMO_PROJECT_ID : props.id;
+  const projectId = props.demo ? 3 : props.id;
 
   const project = await supabase
     .from("projects")
@@ -106,7 +123,7 @@ export const Project = async (props: Props) => {
     ].map(async ({ label, query }) => ({
       data: await supabase
         .rpc("get_event_summary", {
-          days: projectDataPeriodToDays(props.period),
+          days: projectDataPeriodToDays(period),
           event_project_id: projectId,
           ...query,
         })
@@ -118,10 +135,12 @@ export const Project = async (props: Props) => {
 
   return (
     <Flex direction="column" gap="4">
-      <Flex direction="column" gap="2">
+      <Flex direction="row" justify="between">
         <Heading>
           {project.data.teams!.name}/{project.data.name}
         </Heading>
+
+        <ProjectPeriodSelect period={period} />
       </Flex>
 
       <Grid columns="3" gap="4" width="auto">

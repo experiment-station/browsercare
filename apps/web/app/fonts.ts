@@ -36,23 +36,23 @@ export const gtAmerica = localFont({
   variable: "--font-gt-america",
 });
 
-export const gtAmericaMono = localFont({
-  src: [
-    {
-      path: "../public/fonts/GT-America-Mono-Regular.woff2",
-      style: "normal",
-      weight: "400",
-    },
-    {
-      path: "../public/fonts/GT-America-Mono-Medium.woff2",
-      style: "normal",
-      weight: "500",
-    },
-    {
-      path: "../public/fonts/GT-America-Mono-Bold.woff2",
-      style: "normal",
-      weight: "600",
-    },
-  ],
-  variable: "--font-gt-america-mono",
-});
+// export const gtAmericaMono = localFont({
+//   src: [
+//     {
+//       path: "../public/fonts/GT-America-Mono-Regular.woff2",
+//       style: "normal",
+//       weight: "400",
+//     },
+//     {
+//       path: "../public/fonts/GT-America-Mono-Medium.woff2",
+//       style: "normal",
+//       weight: "500",
+//     },
+//     {
+//       path: "../public/fonts/GT-America-Mono-Bold.woff2",
+//       style: "normal",
+//       weight: "600",
+//     },
+//   ],
+//   variable: "--font-gt-america-mono",
+// });

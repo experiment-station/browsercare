@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/react";
 
-import { gtAmerica, gtAmericaMono } from "./fonts";
+import { gtAmerica } from "./fonts";
 import "./style.css";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`${gtAmerica.variable} ${gtAmericaMono.variable}`}
+      className={`${gtAmerica.variable}`}
       lang="en"
       suppressHydrationWarning
     >

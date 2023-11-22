@@ -174,7 +174,18 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_event_summary: {
+        Args: {
+          event_project_id: number
+          days: number
+          group_type: string
+        }
+        Returns: {
+          grouped_column1: string
+          grouped_column2: string
+          event_count: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

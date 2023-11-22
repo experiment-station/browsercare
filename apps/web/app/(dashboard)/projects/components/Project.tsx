@@ -12,20 +12,17 @@ import {
 import { BarList } from "@tremor/react";
 import { cookies } from "next/headers";
 
-type Props = {
-  period_days?: number;
-} & (
+const DEMO_PROJECT_ID = 3;
+
+type Props =
   | {
       id: number;
     }
   | {
       type: "demo";
-    }
-);
+    };
 
 export const Project = async (props: Props) => {
-  const DEMO_PROJECT_ID = 3;
-
   const supabase =
     "type" in props
       ? createSupabaseServiceClient()
@@ -85,7 +82,7 @@ export const Project = async (props: Props) => {
     ].map(async ({ label, query }) => ({
       data: await supabase
         .rpc("get_event_summary", {
-          days: props.period_days ?? 1,
+          days: 7,
           event_project_id: projectId,
           ...query,
         })
@@ -114,7 +111,7 @@ export const Project = async (props: Props) => {
                 style={{ height: 200 }}
                 type="auto"
               >
-                <Box pr="5">
+                <Box pr="4">
                   <BarList
                     color="cyan"
                     data={data!.map((item) => {

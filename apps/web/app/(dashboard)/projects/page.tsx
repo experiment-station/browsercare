@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { Box, Button, Card, Flex, Grid, Heading } from "@radix-ui/themes";
+import { Box, Card, Flex, Grid, Heading } from "@radix-ui/themes";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default async function Page() {
           <Box key={project.id} mb="4">
             <Card asChild>
               <Link href={`/projects/${project.id}`}>
-                {project.teams?.name}/{project.name}
+                {project.teams!.name}/{project.name}
               </Link>
             </Card>
           </Box>

@@ -41,13 +41,19 @@ export default async function Page() {
 
       <Box mt="2">
         {session === null ? (
-          <Flex gap="2">
+          <Flex
+            direction={{
+              initial: "column",
+              xs: "row",
+            }}
+            gap="2"
+          >
             <Button asChild size="3">
               <Link href="/beta">Join the private beta</Link>
             </Button>
 
             <Button asChild size="3" variant="outline">
-              <Link href="/demo">
+              <Link href="/projects/demo">
                 See the demo
                 <ArrowRightIcon />
               </Link>

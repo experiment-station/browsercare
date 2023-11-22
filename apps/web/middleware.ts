@@ -14,7 +14,7 @@ const publicRoutes = [
   "/beta",
   "/beta/thanks",
 
-  "/demo",
+  "/projects/demo",
 ];
 
 export async function middleware(request: NextRequest) {
@@ -34,7 +34,6 @@ export async function middleware(request: NextRequest) {
   return NextResponse.redirect(new URL("/sign-in", request.url));
 }
 
-// https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|logo.png|logo.svg).*)",

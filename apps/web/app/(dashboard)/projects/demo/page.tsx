@@ -18,7 +18,7 @@ export default async function Page() {
         </CalloutIcon>
 
         <CalloutText>
-          These are the stats we gather from{" "}
+          These stats are gathered from{" "}
           <Link href="https://demo.browser.care">demo.browser.care</Link>
         </CalloutText>
       </CalloutRoot>

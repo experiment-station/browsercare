@@ -40,6 +40,10 @@
           return;
         }
 
+        if (env === "production") {
+          return;
+        }
+
         var node = document.createElement("pre");
         node.innerHTML = JSON.stringify(
           {

@@ -15,18 +15,24 @@ const publicRoutes = [
   "/beta/thanks",
 
   "/projects/demo",
+
+  "/api/events",
 ];
 
 export async function middleware(request: NextRequest) {
   enhanceHeaders(request);
 
-  const { authSession, response } = await getSupabaseAuthSession(request);
   const { pathname } = new URL(request.url);
 
   if (publicRoutes.includes(pathname)) {
-    return response;
+    return NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    });
   }
 
+  const { authSession, response } = await getSupabaseAuthSession(request);
   if (authSession.data.session) {
     return response;
   }
@@ -35,7 +41,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|logo.png|logo.svg).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|logo.png|logo.svg).*)"],
 };

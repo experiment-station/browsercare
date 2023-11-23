@@ -19,7 +19,7 @@ export const Header = () => (
           initial: "6",
           lg: "0",
         }}
-        size="3"
+        size="4"
       >
         <Flex justify="between">
           <Flex align="center" asChild gap="2">
@@ -33,7 +33,7 @@ export const Header = () => (
               <Card>
                 <Inset>
                   <Image
-                    alt="browser.care logo"
+                    alt="browsercare logo"
                     height="32"
                     src="/logo.svg"
                     style={{ display: "block" }}

@@ -6,7 +6,7 @@
   <h1>@browsercare/sdk</h1>
 
   <p>
-    JavaScript SDK for <a href="https://browser.care">browser.care</a>
+    JavaScript SDK for <a href="https://browser.care">browsercare</a>.
   </p>
 </div>
 

@@ -30,8 +30,8 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0(react@18.2.0)
       '@radix-ui/themes':
-        specifier: ^2.0.0
-        version: 2.0.0(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.0.1
+        version: 2.0.1(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
       '@supabase/ssr':
         specifier: ^0.0.4
         version: 0.0.4(@supabase/supabase-js@2.38.4)
@@ -1619,8 +1619,8 @@ packages:
       '@babel/runtime': 7.23.2
     dev: false
 
-  /@radix-ui/themes@2.0.0(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-XIJkXLzIOerrmk24wpyYnPnHC+z4KdH4uFGKBcMqKSSAly9GuBDWpscdxaEja1AvOJJChpmONsD768M/GOVpfg==}
+  /@radix-ui/themes@2.0.1(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uO+faiGfwuIR0N9utwIfuasAmH1qRHYJtYTX2Syx0UYEtc9pPAhoCoYobZZi+J03H5WaQouvGiBN6T+UUMm+6Q==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'

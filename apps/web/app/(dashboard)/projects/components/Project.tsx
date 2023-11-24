@@ -134,7 +134,14 @@ export const Project = async (props: Props) => {
     }))
   );
 
-  console.log(eventSummaryQueries);
+  const eventSummaryDataForAI = eventSummaryQueries
+    .filter((s) => s.query.group_type === "browser_name_major")
+    .flatMap((s) => s.data)
+    .filter((item) => !!item)
+    .map((item) => ({
+      browser: item!.grouped_column1 + " " + item!.grouped_column2,
+      sessions: item!.event_count,
+    }));
 
   return (
     <Flex direction="column" gap="4">
@@ -147,7 +154,7 @@ export const Project = async (props: Props) => {
       </Flex>
 
       <Flex direction="row" gap="5" justify="between">
-        <Grid columns="2" gap="4" grow="1" width="auto">
+        <Grid columns={props.demo ? "3" : "2"} gap="4" grow="1" width="auto">
           {eventSummaryQueries.map(({ data, label, query }) => (
             <Card key={query.group_type}>
               <Text weight="medium">{label}</Text>
@@ -161,23 +168,21 @@ export const Project = async (props: Props) => {
                   <Box pr="5">
                     <BarList
                       color="cyan"
-                      data={data!
-                        .sort((a, b) => b.event_count - a.event_count)
-                        .map((item) => {
-                          let name =
-                            item.grouped_column1 === null
-                              ? "Other"
-                              : item.grouped_column1;
+                      data={data!.map((item) => {
+                        let name =
+                          item.grouped_column1 === null
+                            ? "Other"
+                            : item.grouped_column1;
 
-                          if (item.grouped_column2) {
-                            name += ` ${item.grouped_column2}`;
-                          }
+                        if (item.grouped_column2) {
+                          name += ` ${item.grouped_column2}`;
+                        }
 
-                          return {
-                            name,
-                            value: item.event_count,
-                          };
-                        })}
+                        return {
+                          name,
+                          value: item.event_count,
+                        };
+                      })}
                     />
                   </Box>
                 </ScrollArea>
@@ -186,9 +191,11 @@ export const Project = async (props: Props) => {
           ))}
         </Grid>
 
-        <Box style={{ alignSelf: "stretch", width: "35%" }}>
-          <ProjectAI data={eventSummaryQueries} />
-        </Box>
+        {props.demo ? null : (
+          <Box style={{ alignSelf: "stretch", width: "35%" }}>
+            <ProjectAI data={eventSummaryDataForAI} />
+          </Box>
+        )}
       </Flex>
     </Flex>
   );

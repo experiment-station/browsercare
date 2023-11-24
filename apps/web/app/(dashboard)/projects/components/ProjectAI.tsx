@@ -1,21 +1,15 @@
 "use client";
 
-import {
-  ArrowRightIcon,
-  DotsHorizontalIcon,
-  PaperPlaneIcon,
-} from "@radix-ui/react-icons";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import {
   Blockquote,
   Box,
   Button,
   Card,
   Flex,
-  IconButton,
   ScrollArea,
   Text,
   TextArea,
-  TextField,
 } from "@radix-ui/themes";
 import { useChat } from "ai/react";
 

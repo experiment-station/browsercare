@@ -11,7 +11,7 @@ export default async function Page() {
     <Flex direction="column" gap="4">
       <Heading>Your projects</Heading>
 
-      <Grid columns="3" gap="3" width="auto">
+      <Grid columns="4" gap="3" width="auto">
         {query.data?.map((project) => (
           <Box key={project.id} mb="4">
             <Card asChild>

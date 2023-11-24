@@ -30,15 +30,12 @@ export default async function Page() {
           await supabase.from("beta_signups").upsert({ email });
 
           const maskedEmail = email.replace(/^(.{3}).*@/, "$1***@");
-          await fetch(
-            "https://hooks.slack.com/services/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",
-            {
-              body: JSON.stringify({
-                text: `👾 New beta signup for *browser.care*: ${maskedEmail}`,
-              }),
-              method: "POST",
-            }
-          );
+          await fetch(process.env.SLACK_WEBHOOK_URL!, {
+            body: JSON.stringify({
+              text: `👾 New beta signup for *browser.care*: ${maskedEmail}`,
+            }),
+            method: "POST",
+          });
 
           redirect("/beta/thanks");
         }}

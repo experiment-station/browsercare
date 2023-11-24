@@ -14,6 +14,7 @@ import { cookies } from "next/headers";
 
 import type { ProjectDataPeriod } from "../constants";
 
+import { ProjectAI } from "./ProjectAI";
 import { ProjectPeriodSelect } from "./ProjectPeriodSelect";
 
 type Props = {
@@ -97,12 +98,6 @@ export const Project = async (props: Props) => {
         },
       },
       {
-        label: "Browser engine",
-        query: {
-          group_type: "engine",
-        },
-      },
-      {
         label: "Device type",
         query: {
           group_type: "device_type",
@@ -120,6 +115,12 @@ export const Project = async (props: Props) => {
           group_type: "os_name_version",
         },
       },
+      {
+        label: "Engine",
+        query: {
+          group_type: "engine",
+        },
+      },
     ].map(async ({ label, query }) => ({
       data: await supabase
         .rpc("get_event_summary", {
@@ -133,6 +134,15 @@ export const Project = async (props: Props) => {
     }))
   );
 
+  const eventSummaryDataForAI = eventSummaryQueries
+    .filter((s) => s.query.group_type === "browser_name_major")
+    .flatMap((s) => s.data)
+    .filter((item) => !!item)
+    .map((item) => ({
+      browser: item!.grouped_column1 + " " + item!.grouped_column2,
+      sessions: item!.event_count,
+    }));
+
   return (
     <Flex direction="column" gap="4">
       <Flex direction="row" justify="between">
@@ -143,23 +153,22 @@ export const Project = async (props: Props) => {
         <ProjectPeriodSelect period={period} />
       </Flex>
 
-      <Grid columns="3" gap="4" width="auto">
-        {eventSummaryQueries.map(({ data, label, query }) => (
-          <Card key={query.group_type}>
-            <Text weight="medium">{label}</Text>
+      <Flex direction="row" gap="5" justify="between">
+        <Grid columns={props.demo ? "3" : "2"} gap="4" grow="1" width="auto">
+          {eventSummaryQueries.map(({ data, label, query }) => (
+            <Card key={query.group_type}>
+              <Text weight="medium">{label}</Text>
 
-            <Box my="2">
-              <ScrollArea
-                scrollbars="vertical"
-                style={{ height: 200 }}
-                type="auto"
-              >
-                <Box pr="5">
-                  <BarList
-                    color="cyan"
-                    data={data!
-                      .sort((a, b) => b.event_count - a.event_count)
-                      .map((item) => {
+              <Box my="2">
+                <ScrollArea
+                  scrollbars="vertical"
+                  style={{ height: 180 }}
+                  type="auto"
+                >
+                  <Box pr="5">
+                    <BarList
+                      color="cyan"
+                      data={data!.map((item) => {
                         let name =
                           item.grouped_column1 === null
                             ? "Other"
@@ -174,13 +183,20 @@ export const Project = async (props: Props) => {
                           value: item.event_count,
                         };
                       })}
-                  />
-                </Box>
-              </ScrollArea>
-            </Box>
-          </Card>
-        ))}
-      </Grid>
+                    />
+                  </Box>
+                </ScrollArea>
+              </Box>
+            </Card>
+          ))}
+        </Grid>
+
+        {props.demo ? null : (
+          <Box style={{ alignSelf: "stretch", width: "35%" }}>
+            <ProjectAI data={eventSummaryDataForAI} />
+          </Box>
+        )}
+      </Flex>
     </Flex>
   );
 };

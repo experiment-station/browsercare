@@ -28,8 +28,7 @@ export default async function Page() {
 
       <Text align="center" color="gray" size="4">
         We are building a <Strong>privacy-friendly</Strong> tool to help making
-        data-driven decisions to adjust supported browser coverage of your web
-        projects.
+        data-driven decisions to adjust browser coverage of your web projects.
       </Text>
 
       <Text align="center" color="gray" size="4">

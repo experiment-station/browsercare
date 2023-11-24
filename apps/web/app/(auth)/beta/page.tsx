@@ -16,7 +16,7 @@ export default async function Page() {
       <Heading size="6">Join the private beta</Heading>
 
       <Text color="gray">
-        Become a friend of browser.care and help us to develop the tool that you
+        Become a friend of browsercare and help us to develop the tool that you
         need to adjust your supported browser coverage.
       </Text>
 
@@ -32,7 +32,7 @@ export default async function Page() {
           const maskedEmail = email.replace(/^(.{3}).*@/, "$1***@");
           await fetch(process.env.SLACK_WEBHOOK_URL!, {
             body: JSON.stringify({
-              text: `👾 New beta signup for *browser.care*: ${maskedEmail}`,
+              text: `👾 New beta signup for *browsercare*: ${maskedEmail}`,
             }),
             method: "POST",
           });

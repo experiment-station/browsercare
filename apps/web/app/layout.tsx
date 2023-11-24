@@ -37,7 +37,7 @@ export default function RootLayout({
             accentColor="mint"
             grayColor="gray"
             radius="medium"
-            scaling="95%"
+            scaling="100%"
           >
             <Header />
 
@@ -47,7 +47,7 @@ export default function RootLayout({
                 initial: "6",
                 lg: "0",
               }}
-              size="3"
+              size="4"
             >
               {children}
             </Container>

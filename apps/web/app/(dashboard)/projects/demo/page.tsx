@@ -27,7 +27,7 @@ export default async function Page({
         </CalloutText>
       </CalloutRoot>
 
-      <Project demo period={searchParams.period} />
+      <Project demo period={searchParams.period || "30d"} />
     </Flex>
   );
 }

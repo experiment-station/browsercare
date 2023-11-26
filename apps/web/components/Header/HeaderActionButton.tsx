@@ -14,7 +14,7 @@ export const HeaderActionButton = async () => {
   if (session === null) {
     return (
       <Button asChild>
-        <Link href="/beta">Join beta</Link>
+        <Link href="/waitlist">Join the waitlist</Link>
       </Button>
     );
   }

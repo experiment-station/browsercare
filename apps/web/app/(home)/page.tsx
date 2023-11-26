@@ -48,7 +48,7 @@ export default async function Page() {
             gap="2"
           >
             <Button asChild size="3">
-              <Link href="/beta">Join the private beta</Link>
+              <Link href="/waitlist">Join the waitlist</Link>
             </Button>
 
             <Button asChild size="3" variant="outline">

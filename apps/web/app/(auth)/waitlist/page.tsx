@@ -13,11 +13,11 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   return (
     <>
-      <Heading size="6">Join the private beta</Heading>
+      <Heading size="6">Join the waitlist</Heading>
 
       <Text color="gray">
         Become a friend of browsercare and help us to develop the tool that you
-        need to adjust your supported browser coverage.
+        need.
       </Text>
 
       <form
@@ -32,12 +32,12 @@ export default async function Page() {
           const maskedEmail = email.replace(/^(.{3}).*@/, "$1***@");
           await fetch(process.env.SLACK_WEBHOOK_URL!, {
             body: JSON.stringify({
-              text: `👾 New beta signup for *browsercare*: ${maskedEmail}`,
+              text: `👾 New waitlist signup for *browsercare*: ${maskedEmail}`,
             }),
             method: "POST",
           });
 
-          redirect("/beta/thanks");
+          redirect("/waitlist/thanks");
         }}
       >
         <Flex direction="column" gap="2">

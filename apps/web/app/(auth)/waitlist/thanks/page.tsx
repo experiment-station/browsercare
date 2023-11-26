@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Link, Text } from "@radix-ui/themes";
+import { Heading, Link, Text } from "@radix-ui/themes";
 
 export default function Page() {
   return (
@@ -13,7 +13,7 @@ export default function Page() {
           href="https://youtube.com/watch?v=uGEDSGCUkXk"
           target="_blank"
         >
-          Here&apos;s great playlist
+          Here&apos;s great set from The Blaze
         </Link>{" "}
         to enjoy the rest of your day.
       </Text>

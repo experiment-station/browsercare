@@ -21,7 +21,7 @@ export async function GET(request: Request) {
       }
     }
 
-    return NextResponse.redirect(new URL("/beta", request.url));
+    return NextResponse.redirect(new URL("/waitlist", request.url));
   } catch (error) {
     return NextResponse.json(
       {

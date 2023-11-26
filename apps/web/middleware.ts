@@ -11,11 +11,10 @@ const publicRoutes = [
   "/auth/sign-out",
 
   "/sign-in",
-  "/beta",
-  "/beta/thanks",
+  "/waitlist",
+  "/waitlist/thanks",
 
   "/projects/demo",
-
   "/api/events",
 ];
 

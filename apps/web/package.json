@@ -34,7 +34,7 @@
     "autoprefixer": "^10",
     "eslint": "^8.54.0",
     "eslint-config-next": "14.0.3",
-    "eslint-plugin-perfectionist": "^2.4.0",
+    "eslint-plugin-perfectionist": "^2.5.0",
     "postcss": "^8",
     "supabase": "^1.113.2",
     "tailwindcss": "^3",

@@ -2,11 +2,12 @@
   "name": "@browsercare/web",
   "version": "0.0.0",
   "private": true,
+  "license": "UNLICENSED",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
+    "lint": "eslint .",
     "start": "next start",
-    "lint": "next lint",
     "supabase:login": "supabase login",
     "supabase:types": "supabase gen types typescript --project-id depmapfpvowhvxvysntn > types/supabase/database-generated.ts"
   },
@@ -39,6 +40,5 @@
     "supabase": "^1.115.4",
     "tailwindcss": "^3",
     "typescript": "^5.3.2"
-  },
-  "license": "UNLICENSED"
+  }
 }

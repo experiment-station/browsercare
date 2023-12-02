@@ -3,13 +3,16 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
     "commitlint": "commitlint --edit",
+    "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
+    "lint": "turbo lint",
     "prepare": "is-ci || husky install"
   },
+  "prettier": "@browsercare/prettier-config",
   "devDependencies": {
     "@browsercare/eslint-config": "workspace:*",
+    "@browsercare/prettier-config": "workspace:*",
     "@browsercare/typescript-config": "workspace:*",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",

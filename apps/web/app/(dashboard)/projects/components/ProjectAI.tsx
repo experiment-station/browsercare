@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 import {
   Blockquote,
   Box,
@@ -10,16 +10,16 @@ import {
   ScrollArea,
   Text,
   TextArea,
-} from "@radix-ui/themes";
-import { useChat } from "ai/react";
+} from '@radix-ui/themes';
+import { useChat } from 'ai/react';
 
 export const ProjectAI = () => {
   const { handleInputChange, handleSubmit, input, messages } = useChat({
-    api: "/api/ai",
+    api: '/api/ai',
   });
 
   return (
-    <Card style={{ height: "100%" }}>
+    <Card style={{ height: '100%' }}>
       <Flex direction="column" gap="4" height="100%" justify="between">
         <Text weight="medium">Chat with browsercare AI</Text>
 
@@ -27,7 +27,7 @@ export const ProjectAI = () => {
           <Flex direction="column" gap="2" pr="8">
             {messages.map((message, index) => (
               <Blockquote
-                color={message.role === "user" ? "mint" : "gray"}
+                color={message.role === 'user' ? 'mint' : 'gray'}
                 key={index}
                 size="2"
               >

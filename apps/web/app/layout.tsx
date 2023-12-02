@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-import { Header } from "@/components/Header/Header";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Container, Theme } from "@radix-ui/themes";
-import { PropsWithChildren } from "react";
+import { Header } from '@/components/Header/Header';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { Container, Theme } from '@radix-ui/themes';
+import { PropsWithChildren } from 'react';
 
-import { gtAmerica } from "./fonts";
-import "./style.css";
+import { gtAmerica } from './fonts';
+import './style.css';
 
 export const metadata: Metadata = {
-  description: "",
-  title: "browsercare",
+  description: '',
+  title: 'browsercare',
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -40,8 +40,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
             <Container
               my="6"
               px={{
-                initial: "6",
-                lg: "0",
+                initial: '6',
+                lg: '0',
               }}
               size="4"
             >

@@ -1,11 +1,11 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { Box, Card, Flex, Grid, Heading } from "@radix-ui/themes";
-import { cookies } from "next/headers";
-import Link from "next/link";
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { Box, Card, Flex, Grid, Heading } from '@radix-ui/themes';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
 
 export default async function Page() {
   const supabase = createSupabaseServerClient(cookies());
-  const query = await supabase.from("projects").select("id, name, teams(name)");
+  const query = await supabase.from('projects').select('id, name, teams(name)');
 
   return (
     <Flex direction="column" gap="4">

@@ -1,6 +1,6 @@
-import { Database } from "@/types/supabase/database";
-import { type CookieOptions, createServerClient } from "@supabase/ssr";
-import { type NextRequest, NextResponse } from "next/server";
+import { Database } from '@/types/supabase/database';
+import { type CookieOptions, createServerClient } from '@supabase/ssr';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export const getSupabaseAuthSession = async (request: NextRequest) => {
   let response = NextResponse.next({
@@ -50,7 +50,7 @@ export const getSupabaseAuthSession = async (request: NextRequest) => {
           });
         },
       },
-    }
+    },
   );
 
   const authSession = await supabase.auth.getSession();

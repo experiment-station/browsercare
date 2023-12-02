@@ -2,16 +2,16 @@
   "name": "@browsercare/sdk",
   "version": "0.1.7",
   "description": "JavaScript SDK for browsercare",
-  "main": "index.js",
-  "license": "MIT",
-  "author": "altaywtf",
-  "publishConfig": {
-    "access": "public"
-  },
+  "homepage": "https://browser.care",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/altaywtf/browsercare.git",
     "directory": "packages/sdk"
   },
-  "homepage": "https://browser.care"
+  "license": "MIT",
+  "author": "altaywtf",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }

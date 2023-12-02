@@ -5,19 +5,19 @@ import {
   Heading,
   Inset,
   Separator,
-} from "@radix-ui/themes";
-import Image from "next/image";
-import Link from "next/link";
+} from '@radix-ui/themes';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { HeaderActionButton } from "./HeaderActionButton";
+import { HeaderActionButton } from './HeaderActionButton';
 
 export const Header = () => (
   <header className="sticky">
     <Flex direction="column" gap="4" mt="4">
       <Container
         px={{
-          initial: "6",
-          lg: "0",
+          initial: '6',
+          lg: '0',
         }}
         size="4"
       >
@@ -26,8 +26,8 @@ export const Header = () => (
             <Link
               href="/"
               style={{
-                color: "inherit",
-                textDecoration: "none",
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
               <Card>
@@ -36,7 +36,7 @@ export const Header = () => (
                     alt="browsercare logo"
                     height="32"
                     src="/logo.svg"
-                    style={{ display: "block" }}
+                    style={{ display: 'block' }}
                     width="32"
                   />
                 </Inset>

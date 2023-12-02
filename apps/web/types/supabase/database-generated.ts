@@ -66,11 +66,11 @@ export interface Database {
         };
         Relationships: [
           {
-            columns: ["project_id"];
-            foreignKeyName: "events_project_id_fkey";
+            columns: ['project_id'];
+            foreignKeyName: 'events_project_id_fkey';
             isOneToOne: false;
-            referencedColumns: ["id"];
-            referencedRelation: "projects";
+            referencedColumns: ['id'];
+            referencedRelation: 'projects';
           },
         ];
         Row: {
@@ -114,18 +114,18 @@ export interface Database {
         };
         Relationships: [
           {
-            columns: ["team_id"];
-            foreignKeyName: "members_team_id_fkey";
+            columns: ['team_id'];
+            foreignKeyName: 'members_team_id_fkey';
             isOneToOne: false;
-            referencedColumns: ["id"];
-            referencedRelation: "teams";
+            referencedColumns: ['id'];
+            referencedRelation: 'teams';
           },
           {
-            columns: ["user_id"];
-            foreignKeyName: "members_user_id_fkey";
+            columns: ['user_id'];
+            foreignKeyName: 'members_user_id_fkey';
             isOneToOne: false;
-            referencedColumns: ["id"];
-            referencedRelation: "users";
+            referencedColumns: ['id'];
+            referencedRelation: 'users';
           },
         ];
         Row: {
@@ -149,11 +149,11 @@ export interface Database {
         };
         Relationships: [
           {
-            columns: ["team_id"];
-            foreignKeyName: "projects_team_id_fkey";
+            columns: ['team_id'];
+            foreignKeyName: 'projects_team_id_fkey';
             isOneToOne: false;
-            referencedColumns: ["id"];
-            referencedRelation: "teams";
+            referencedColumns: ['id'];
+            referencedRelation: 'teams';
           },
         ];
         Row: {

@@ -1,4 +1,4 @@
-declare module "@ua-parser-js/pro-business" {
+declare module '@ua-parser-js/pro-business' {
   // Type definitions for UAParser.js v2.0.0-beta.1
   // Project: https://github.com/faisalman/ua-parser-js
   // Definitions by: Faisal Salman <https://github.com/faisalman>
@@ -19,49 +19,49 @@ declare module "@ua-parser-js/pro-business" {
 
     interface ICPU extends IData<ICPU> {
       architecture?:
-        | "68k"
-        | "amd64"
-        | "arm"
-        | "arm64"
-        | "armhf"
-        | "avr"
-        | "ia32"
-        | "ia64"
-        | "irix"
-        | "irix64"
-        | "mips"
-        | "mips64"
-        | "ppc"
-        | "sparc"
-        | "sparc64";
+        | '68k'
+        | 'amd64'
+        | 'arm'
+        | 'arm64'
+        | 'armhf'
+        | 'avr'
+        | 'ia32'
+        | 'ia64'
+        | 'irix'
+        | 'irix64'
+        | 'mips'
+        | 'mips64'
+        | 'ppc'
+        | 'sparc'
+        | 'sparc64';
     }
 
     interface IDevice extends IData<IDevice> {
       model?: string;
-      type?: "console" | "mobile" | "smarttv" | "tablet" | "wearable";
+      type?: 'console' | 'mobile' | 'smarttv' | 'tablet' | 'wearable';
       vendor?: string;
     }
 
     interface IEngine extends IData<IEngine> {
       name?:
-        | "Amaya"
-        | "Blink"
-        | "EdgeHTML"
-        | "Flow"
-        | "Gecko"
-        | "Goanna"
-        | "KHTML"
-        | "LibWeb"
-        | "Links"
-        | "Lynx"
-        | "NetFront"
-        | "NetSurf"
-        | "Presto"
-        | "Tasman"
-        | "Trident"
-        | "WebKit"
-        | "iCab"
-        | "w3m";
+        | 'Amaya'
+        | 'Blink'
+        | 'EdgeHTML'
+        | 'Flow'
+        | 'Gecko'
+        | 'Goanna'
+        | 'KHTML'
+        | 'LibWeb'
+        | 'Links'
+        | 'Lynx'
+        | 'NetFront'
+        | 'NetSurf'
+        | 'Presto'
+        | 'Tasman'
+        | 'Trident'
+        | 'WebKit'
+        | 'iCab'
+        | 'w3m';
       version?: string;
     }
 
@@ -98,31 +98,31 @@ declare module "@ua-parser-js/pro-business" {
 
     export class UAParser {
       static readonly BROWSER: {
-        MAJOR: "major";
-        NAME: "name";
-        VERSION: "version";
+        MAJOR: 'major';
+        NAME: 'name';
+        VERSION: 'version';
       };
       static readonly CPU: {
-        ARCHITECTURE: "architecture";
+        ARCHITECTURE: 'architecture';
       };
       static readonly DEVICE: {
-        CONSOLE: "console";
-        EMBEDDED: "embedded";
-        MOBILE: "mobile";
-        MODEL: "model";
-        SMARTTV: "smarttv";
-        TABLET: "tablet";
-        TYPE: "type";
-        VENDOR: "vendor";
-        WEARABLE: "wearable";
+        CONSOLE: 'console';
+        EMBEDDED: 'embedded';
+        MOBILE: 'mobile';
+        MODEL: 'model';
+        SMARTTV: 'smarttv';
+        TABLET: 'tablet';
+        TYPE: 'type';
+        VENDOR: 'vendor';
+        WEARABLE: 'wearable';
       };
       static readonly ENGINE: {
-        NAME: "name";
-        VERSION: "version";
+        NAME: 'name';
+        VERSION: 'version';
       };
       static readonly OS: {
-        NAME: "name";
-        VERSION: "version";
+        NAME: 'name';
+        VERSION: 'version';
       };
       static readonly VERSION: string;
 

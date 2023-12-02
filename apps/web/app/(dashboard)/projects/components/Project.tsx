@@ -1,5 +1,5 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { createSupabaseServiceClient } from "@/lib/supabase/service";
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseServiceClient } from '@/lib/supabase/service';
 import {
   Box,
   Card,
@@ -8,14 +8,14 @@ import {
   Heading,
   ScrollArea,
   Text,
-} from "@radix-ui/themes";
-import { BarList } from "@tremor/react";
-import { cookies } from "next/headers";
+} from '@radix-ui/themes';
+import { BarList } from '@tremor/react';
+import { cookies } from 'next/headers';
 
-import type { ProjectDataPeriod } from "../constants";
+import type { ProjectDataPeriod } from '../constants';
 
-import { ProjectAI } from "./ProjectAI";
-import { ProjectPeriodSelect } from "./ProjectPeriodSelect";
+import { ProjectAI } from './ProjectAI';
+import { ProjectPeriodSelect } from './ProjectPeriodSelect';
 
 type Props = {
   period?: string;
@@ -31,35 +31,35 @@ type Props = {
 
 const projectDataPeriodToDays = (period: ProjectDataPeriod) => {
   switch (period) {
-    case "24h":
+    case '24h':
       return 1;
 
-    case "7d":
+    case '7d':
       return 7;
 
-    case "14d":
+    case '14d':
       return 14;
 
-    case "30d":
+    case '30d':
       return 30;
 
     default:
-      throw new Error("Invalid period");
+      throw new Error('Invalid period');
   }
 };
 
 const normalizeProjectDataPeriod = (
-  period: Props["period"]
+  period: Props['period'],
 ): ProjectDataPeriod => {
   switch (period) {
-    case "24h":
-    case "7d":
-    case "14d":
-    case "30d":
+    case '24h':
+    case '7d':
+    case '14d':
+    case '30d':
       return period;
 
     default:
-      return "24h";
+      return '24h';
   }
 };
 
@@ -73,57 +73,57 @@ export const Project = async (props: Props) => {
   const projectId = props.demo ? 3 : props.id;
 
   const project = await supabase
-    .from("projects")
-    .select("name, teams(name), events(*)")
-    .eq("id", projectId)
-    .limit(1, { foreignTable: "teams" })
+    .from('projects')
+    .select('name, teams(name), events(*)')
+    .eq('id', projectId)
+    .limit(1, { foreignTable: 'teams' })
     .maybeSingle();
 
   if (!project.data) {
-    throw new Error("Project not found");
+    throw new Error('Project not found');
   }
 
   const eventSummaryQueries = await Promise.all(
     [
       {
-        label: "Browser",
+        label: 'Browser',
         query: {
-          group_type: "browser_name",
+          group_type: 'browser_name',
         },
       },
       {
-        label: "Browser version",
+        label: 'Browser version',
         query: {
-          group_type: "browser_name_major",
+          group_type: 'browser_name_major',
         },
       },
       {
-        label: "Device type",
+        label: 'Device type',
         query: {
-          group_type: "device_type",
+          group_type: 'device_type',
         },
       },
       {
-        label: "Device model",
+        label: 'Device model',
         query: {
-          group_type: "device_vendor_model",
+          group_type: 'device_vendor_model',
         },
       },
       {
-        label: "Operating system",
+        label: 'Operating system',
         query: {
-          group_type: "os_name_version",
+          group_type: 'os_name_version',
         },
       },
       {
-        label: "Engine",
+        label: 'Engine',
         query: {
-          group_type: "engine",
+          group_type: 'engine',
         },
       },
     ].map(async ({ label, query }) => ({
       data: await supabase
-        .rpc("get_event_summary", {
+        .rpc('get_event_summary', {
           days: projectDataPeriodToDays(period),
           event_project_id: projectId,
           ...query,
@@ -131,17 +131,8 @@ export const Project = async (props: Props) => {
         .then((response) => response.data),
       label: label,
       query: query,
-    }))
+    })),
   );
-
-  const eventSummaryDataForAI = eventSummaryQueries
-    .filter((s) => s.query.group_type === "browser_name_major")
-    .flatMap((s) => s.data)
-    .filter((item) => !!item)
-    .map((item) => ({
-      browser: item!.grouped_column1 + " " + item!.grouped_column2,
-      sessions: item!.event_count,
-    }));
 
   return (
     <Flex direction="column" gap="4">
@@ -154,7 +145,7 @@ export const Project = async (props: Props) => {
       </Flex>
 
       <Flex direction="row" gap="5" justify="between">
-        <Grid columns={props.demo ? "3" : "2"} gap="4" grow="1" width="auto">
+        <Grid columns={props.demo ? '3' : '2'} gap="4" grow="1" width="auto">
           {eventSummaryQueries.map(({ data, label, query }) => (
             <Card key={query.group_type}>
               <Text weight="medium">{label}</Text>
@@ -171,7 +162,7 @@ export const Project = async (props: Props) => {
                       data={data!.map((item) => {
                         let name =
                           item.grouped_column1 === null
-                            ? "Other"
+                            ? 'Other'
                             : item.grouped_column1;
 
                         if (item.grouped_column2) {
@@ -192,8 +183,8 @@ export const Project = async (props: Props) => {
         </Grid>
 
         {props.demo ? null : (
-          <Box style={{ alignSelf: "stretch", width: "35%" }}>
-            <ProjectAI data={eventSummaryDataForAI} />
+          <Box style={{ alignSelf: 'stretch', width: '35%' }}>
+            <ProjectAI />
           </Box>
         )}
       </Flex>

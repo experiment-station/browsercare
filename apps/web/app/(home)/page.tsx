@@ -1,8 +1,8 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { Box, Button, Flex, Heading, Strong, Text } from "@radix-ui/themes";
-import { cookies } from "next/headers";
-import Link from "next/link";
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { Box, Button, Flex, Heading, Strong, Text } from '@radix-ui/themes';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
 
 export default async function Page() {
   const supabase = createSupabaseServerClient(cookies());
@@ -19,7 +19,7 @@ export default async function Page() {
       mt="6"
       mx="auto"
       style={{
-        maxWidth: "var(--container-2)",
+        maxWidth: 'var(--container-2)',
       }}
     >
       <Heading align="center" size="8">
@@ -42,8 +42,8 @@ export default async function Page() {
         {session === null ? (
           <Flex
             direction={{
-              initial: "column",
-              xs: "row",
+              initial: 'column',
+              xs: 'row',
             }}
             gap="2"
           >

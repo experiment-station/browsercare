@@ -1,4 +1,4 @@
-import { Heading, Link, Text } from "@radix-ui/themes";
+import { Heading, Link, Text } from '@radix-ui/themes';
 
 export default function Page() {
   return (
@@ -14,7 +14,7 @@ export default function Page() {
           target="_blank"
         >
           Here&apos;s great set from The Blaze
-        </Link>{" "}
+        </Link>{' '}
         to enjoy the rest of your day.
       </Text>
     </>

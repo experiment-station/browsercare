@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { Select } from "@radix-ui/themes";
-import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import { Select } from '@radix-ui/themes';
+import { usePathname, useRouter } from 'next/navigation';
+import React from 'react';
 
-import { PROJECT_DATA_PERIODS, ProjectDataPeriod } from "../constants";
+import { PROJECT_DATA_PERIODS, ProjectDataPeriod } from '../constants';
 
 type Props = {
   period: ProjectDataPeriod;
@@ -19,7 +19,7 @@ export const ProjectPeriodSelect = ({ period }: Props) => {
       defaultValue={period}
       onValueChange={(value) => {
         const params = new URLSearchParams();
-        params.set("period", value);
+        params.set('period', value);
         router.replace(`${pathname}?${params.toString()}`);
       }}
     >

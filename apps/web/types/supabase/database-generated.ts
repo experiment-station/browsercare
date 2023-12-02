@@ -1,197 +1,197 @@
 export type Json =
-  | string
-  | number
-  | boolean
-  | null
   | { [key: string]: Json | undefined }
   | Json[]
+  | boolean
+  | null
+  | number
+  | string;
 
 export interface Database {
   public: {
-    Tables: {
-      beta_signups: {
-        Row: {
-          created_at: string
-          email: string
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          id?: number
-        }
-        Relationships: []
-      }
-      events: {
-        Row: {
-          browser_major: string
-          browser_name: string
-          browser_version: string
-          created_at: string
-          device_model: string | null
-          device_type: string | null
-          device_vendor: string | null
-          engine_name: string | null
-          engine_version: string | null
-          id: number
-          os_name: string | null
-          os_version: string | null
-          project_id: number
-          user_agent: string
-        }
-        Insert: {
-          browser_major: string
-          browser_name: string
-          browser_version: string
-          created_at?: string
-          device_model?: string | null
-          device_type?: string | null
-          device_vendor?: string | null
-          engine_name?: string | null
-          engine_version?: string | null
-          id?: number
-          os_name?: string | null
-          os_version?: string | null
-          project_id: number
-          user_agent: string
-        }
-        Update: {
-          browser_major?: string
-          browser_name?: string
-          browser_version?: string
-          created_at?: string
-          device_model?: string | null
-          device_type?: string | null
-          device_vendor?: string | null
-          engine_name?: string | null
-          engine_version?: string | null
-          id?: number
-          os_name?: string | null
-          os_version?: string | null
-          project_id?: number
-          user_agent?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "events_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      members: {
-        Row: {
-          created_at: string | null
-          team_id: number
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          team_id: number
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          team_id?: number
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "members_team_id_fkey"
-            columns: ["team_id"]
-            isOneToOne: false
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "members_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      projects: {
-        Row: {
-          created_at: string
-          id: number
-          is_active: boolean
-          name: string
-          team_id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          is_active?: boolean
-          name: string
-          team_id: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          is_active?: boolean
-          name?: string
-          team_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "projects_team_id_fkey"
-            columns: ["team_id"]
-            isOneToOne: false
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      teams: {
-        Row: {
-          created_at: string
-          id: number
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          name: string
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          name?: string
-        }
-        Relationships: []
-      }
-    }
-    Views: {
-      [_ in never]: never
-    }
+    CompositeTypes: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
     Functions: {
       get_event_summary: {
         Args: {
-          event_project_id: number
-          days: number
-          group_type: string
-        }
+          days: number;
+          event_project_id: number;
+          group_type: string;
+        };
         Returns: {
-          grouped_column1: string
-          grouped_column2: string
-          event_count: number
-        }[]
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
+          event_count: number;
+          grouped_column1: string;
+          grouped_column2: string;
+        }[];
+      };
+    };
+    Tables: {
+      beta_signups: {
+        Insert: {
+          created_at?: string;
+          email: string;
+          id?: number;
+        };
+        Relationships: [];
+        Row: {
+          created_at: string;
+          email: string;
+          id: number;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          id?: number;
+        };
+      };
+      events: {
+        Insert: {
+          browser_major: string;
+          browser_name: string;
+          browser_version: string;
+          created_at?: string;
+          device_model?: null | string;
+          device_type?: null | string;
+          device_vendor?: null | string;
+          engine_name?: null | string;
+          engine_version?: null | string;
+          id?: number;
+          os_name?: null | string;
+          os_version?: null | string;
+          project_id: number;
+          user_agent: string;
+        };
+        Relationships: [
+          {
+            columns: ['project_id'];
+            foreignKeyName: 'events_project_id_fkey';
+            isOneToOne: false;
+            referencedColumns: ['id'];
+            referencedRelation: 'projects';
+          },
+        ];
+        Row: {
+          browser_major: string;
+          browser_name: string;
+          browser_version: string;
+          created_at: string;
+          device_model: null | string;
+          device_type: null | string;
+          device_vendor: null | string;
+          engine_name: null | string;
+          engine_version: null | string;
+          id: number;
+          os_name: null | string;
+          os_version: null | string;
+          project_id: number;
+          user_agent: string;
+        };
+        Update: {
+          browser_major?: string;
+          browser_name?: string;
+          browser_version?: string;
+          created_at?: string;
+          device_model?: null | string;
+          device_type?: null | string;
+          device_vendor?: null | string;
+          engine_name?: null | string;
+          engine_version?: null | string;
+          id?: number;
+          os_name?: null | string;
+          os_version?: null | string;
+          project_id?: number;
+          user_agent?: string;
+        };
+      };
+      members: {
+        Insert: {
+          created_at?: null | string;
+          team_id: number;
+          user_id: string;
+        };
+        Relationships: [
+          {
+            columns: ['team_id'];
+            foreignKeyName: 'members_team_id_fkey';
+            isOneToOne: false;
+            referencedColumns: ['id'];
+            referencedRelation: 'teams';
+          },
+          {
+            columns: ['user_id'];
+            foreignKeyName: 'members_user_id_fkey';
+            isOneToOne: false;
+            referencedColumns: ['id'];
+            referencedRelation: 'users';
+          },
+        ];
+        Row: {
+          created_at: null | string;
+          team_id: number;
+          user_id: string;
+        };
+        Update: {
+          created_at?: null | string;
+          team_id?: number;
+          user_id?: string;
+        };
+      };
+      projects: {
+        Insert: {
+          created_at?: string;
+          id?: number;
+          is_active?: boolean;
+          name: string;
+          team_id: number;
+        };
+        Relationships: [
+          {
+            columns: ['team_id'];
+            foreignKeyName: 'projects_team_id_fkey';
+            isOneToOne: false;
+            referencedColumns: ['id'];
+            referencedRelation: 'teams';
+          },
+        ];
+        Row: {
+          created_at: string;
+          id: number;
+          is_active: boolean;
+          name: string;
+          team_id: number;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          is_active?: boolean;
+          name?: string;
+          team_id?: number;
+        };
+      };
+      teams: {
+        Insert: {
+          created_at?: string;
+          id?: number;
+          name: string;
+        };
+        Relationships: [];
+        Row: {
+          created_at: string;
+          id: number;
+          name: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          name?: string;
+        };
+      };
+    };
+    Views: {
+      [_ in never]: never;
+    };
+  };
 }

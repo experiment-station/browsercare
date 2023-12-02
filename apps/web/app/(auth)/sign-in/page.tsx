@@ -1,5 +1,5 @@
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { Button, Flex, Heading, Text } from '@radix-ui/themes';
 
 export default async function Page() {
   return (

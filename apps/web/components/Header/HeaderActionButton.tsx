@@ -1,9 +1,9 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { Button } from "@radix-ui/themes";
-import { cookies } from "next/headers";
-import Link from "next/link";
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { Button } from '@radix-ui/themes';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
 
-import { HeaderActionButtonAuthenticated } from "./HeaderActionButtonAuthenticated";
+import { HeaderActionButtonAuthenticated } from './HeaderActionButtonAuthenticated';
 
 export const HeaderActionButton = async () => {
   const supabase = createSupabaseServerClient(cookies());

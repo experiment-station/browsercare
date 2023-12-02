@@ -1,19 +1,11 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { createSupabaseServiceClient } from '@/lib/supabase/service';
-import {
-  Box,
-  Card,
-  Flex,
-  Grid,
-  Heading,
-  ScrollArea,
-  Text,
-} from '@radix-ui/themes';
-import { BarList } from '@tremor/react';
+import { Flex, Heading } from '@radix-ui/themes';
 import { cookies } from 'next/headers';
 
 import type { ProjectDataPeriod } from '../constants';
 
+import { ProjectEvents } from './ProjectEvents';
 import { ProjectPeriodSelect } from './ProjectPeriodSelect';
 
 type Props = {
@@ -27,25 +19,6 @@ type Props = {
       id: number;
     }
 );
-
-const projectDataPeriodToDays = (period: ProjectDataPeriod) => {
-  switch (period) {
-    case '24h':
-      return 1;
-
-    case '7d':
-      return 7;
-
-    case '14d':
-      return 14;
-
-    case '30d':
-      return 30;
-
-    default:
-      throw new Error('Invalid period');
-  }
-};
 
 const normalizeProjectDataPeriod = (
   period: Props['period'],
@@ -82,67 +55,6 @@ export const Project = async (props: Props) => {
     throw new Error('Project not found');
   }
 
-  const eventSummaryQueries = await Promise.all(
-    [
-      {
-        label: 'Browser',
-        query: {
-          group_type: 'browser_name',
-        },
-      },
-      {
-        label: 'Browser version',
-        query: {
-          group_type: 'browser_name_major',
-        },
-      },
-      {
-        label: 'Engine',
-        query: {
-          group_type: 'engine',
-        },
-      },
-      {
-        label: 'Device type',
-        query: {
-          group_type: 'device_type',
-        },
-      },
-      {
-        label: 'Device model',
-        query: {
-          group_type: 'device_vendor_model',
-        },
-      },
-      {
-        label: 'Operating system',
-        query: {
-          group_type: 'os_name_version',
-        },
-      },
-    ].map(async ({ label, query }) => {
-      const result = await supabase.rpc('get_event_summary', {
-        days: projectDataPeriodToDays(period),
-        event_project_id: projectId,
-        ...query,
-      });
-
-      return {
-        label,
-        query,
-        result: result.data
-          ? ({
-              data: result.data,
-              type: 'success',
-            } as const)
-          : ({
-              error: result.error,
-              type: 'error',
-            } as const),
-      };
-    }),
-  );
-
   return (
     <Flex direction="column" gap="4">
       <Flex direction="row" justify="between">
@@ -153,50 +65,11 @@ export const Project = async (props: Props) => {
         <ProjectPeriodSelect period={period} />
       </Flex>
 
-      <Flex direction="row" gap="5" justify="between">
-        <Grid columns="3" gap="4" grow="1" width="auto">
-          {eventSummaryQueries.map(({ label, query, result }) => (
-            <Card key={query.group_type}>
-              <Text weight="medium">{label}</Text>
-
-              <Box my="2">
-                {result.type === 'success' ? (
-                  <ScrollArea
-                    scrollbars="vertical"
-                    style={{ height: 180 }}
-                    type="auto"
-                  >
-                    <Box pr="5">
-                      <BarList
-                        color="cyan"
-                        data={result.data.map((item) => {
-                          let name =
-                            item.grouped_column1 === null
-                              ? 'Other'
-                              : item.grouped_column1;
-
-                          if (item.grouped_column2) {
-                            name += ` ${item.grouped_column2}`;
-                          }
-
-                          return {
-                            name,
-                            value: item.event_count,
-                          };
-                        })}
-                      />
-                    </Box>
-                  </ScrollArea>
-                ) : (
-                  <Text>
-                    {result.error.code} / {result.error.message}
-                  </Text>
-                )}
-              </Box>
-            </Card>
-          ))}
-        </Grid>
-      </Flex>
+      <ProjectEvents
+        period={period}
+        projectId={projectId}
+        supabase={supabase}
+      />
     </Flex>
   );
 };

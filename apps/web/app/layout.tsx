@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Container, Theme } from "@radix-ui/themes";
-import { Analytics } from "@vercel/analytics/react";
+import { PropsWithChildren } from "react";
 
 import { gtAmerica } from "./fonts";
 import "./style.css";
@@ -13,11 +13,7 @@ export const metadata: Metadata = {
   title: "browsercare",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
       className={`${gtAmerica.variable}`}
@@ -53,8 +49,6 @@ export default function RootLayout({
             </Container>
           </Theme>
         </ThemeProvider>
-
-        <Analytics />
       </body>
     </html>
   );

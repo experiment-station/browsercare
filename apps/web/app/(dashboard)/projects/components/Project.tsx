@@ -49,7 +49,7 @@ const projectDataPeriodToDays = (period: ProjectDataPeriod) => {
 };
 
 const normalizeProjectDataPeriod = (
-  period: Props["period"]
+  period: Props["period"],
 ): ProjectDataPeriod => {
   switch (period) {
     case "24h":
@@ -131,7 +131,7 @@ export const Project = async (props: Props) => {
         .then((response) => response.data),
       label: label,
       query: query,
-    }))
+    })),
   );
 
   const eventSummaryDataForAI = eventSummaryQueries

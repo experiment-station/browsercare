@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
       { message: 'Missing "project" or "user-agent"' },
       {
         status: 400,
-      }
+      },
     );
   }
 
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
         { message: "Project not found" },
         {
           status: 404,
-        }
+        },
       );
     }
 
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
         { message: "Project not found" },
         {
           status: 404,
-        }
+        },
       );
     }
 
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         { message: "Project is not active" },
         {
           status: 400,
-        }
+        },
       );
     }
 
@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
         },
         {
           status: 400,
-        }
+        },
       );
     }
 
@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
         { message: "Something went wrong" },
         {
           status: 500,
-        }
+        },
       );
     }
 
@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
       { message: "Something went wrong" },
       {
         status: 500,
-      }
+      },
     );
   }
 }

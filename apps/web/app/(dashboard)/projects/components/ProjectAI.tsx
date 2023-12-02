@@ -13,11 +13,7 @@ import {
 } from "@radix-ui/themes";
 import { useChat } from "ai/react";
 
-type Props = {
-  data: any;
-};
-
-export const ProjectAI = (props: Props) => {
+export const ProjectAI = () => {
   const { handleInputChange, handleSubmit, input, messages } = useChat({
     api: "/api/ai",
   });

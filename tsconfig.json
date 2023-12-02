@@ -1,0 +1,3 @@
+{
+  "extends": "@browsercare/typescript-config/base.json"
+}

@@ -1,13 +1,26 @@
 {
   "name": "browsercare",
-  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "commitlint": "commitlint --edit"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "commitlint": "commitlint --edit",
+    "prepare": "is-ci || husky install"
   },
   "devDependencies": {
+    "@browsercare/eslint-config": "workspace:*",
+    "@browsercare/typescript-config": "workspace:*",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0",
+    "turbo": "^1.10.16"
   },
-  "packageManager": "pnpm@8.11.0"
+  "packageManager": "pnpm@8.11.0",
+  "engines": {
+    "node": ">=20"
+  }
 }

@@ -20,6 +20,15 @@ export async function GET(request: NextRequest) {
     const supabase = createSupabaseServiceClient();
     const [teamName, projectName] = project.split('/');
 
+    if (!teamName || !projectName) {
+      return NextResponse.json(
+        { message: 'Invalid project format' },
+        {
+          status: 400,
+        },
+      );
+    }
+
     const teamQuery = await supabase
       .from('teams')
       .select('id')

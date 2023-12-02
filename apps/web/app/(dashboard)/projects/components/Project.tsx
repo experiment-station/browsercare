@@ -134,15 +134,6 @@ export const Project = async (props: Props) => {
     })),
   );
 
-  const eventSummaryDataForAI = eventSummaryQueries
-    .filter((s) => s.query.group_type === 'browser_name_major')
-    .flatMap((s) => s.data)
-    .filter((item) => !!item)
-    .map((item) => ({
-      browser: item!.grouped_column1 + ' ' + item!.grouped_column2,
-      sessions: item!.event_count,
-    }));
-
   return (
     <Flex direction="column" gap="4">
       <Flex direction="row" justify="between">
@@ -193,7 +184,7 @@ export const Project = async (props: Props) => {
 
         {props.demo ? null : (
           <Box style={{ alignSelf: 'stretch', width: '35%' }}>
-            <ProjectAI data={eventSummaryDataForAI} />
+            <ProjectAI />
           </Box>
         )}
       </Flex>

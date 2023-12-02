@@ -14,7 +14,6 @@ import { cookies } from 'next/headers';
 
 import type { ProjectDataPeriod } from '../constants';
 
-import { ProjectAI } from './ProjectAI';
 import { ProjectPeriodSelect } from './ProjectPeriodSelect';
 
 type Props = {
@@ -98,6 +97,12 @@ export const Project = async (props: Props) => {
         },
       },
       {
+        label: 'Engine',
+        query: {
+          group_type: 'engine',
+        },
+      },
+      {
         label: 'Device type',
         query: {
           group_type: 'device_type',
@@ -115,23 +120,27 @@ export const Project = async (props: Props) => {
           group_type: 'os_name_version',
         },
       },
-      {
-        label: 'Engine',
-        query: {
-          group_type: 'engine',
-        },
-      },
-    ].map(async ({ label, query }) => ({
-      data: await supabase
-        .rpc('get_event_summary', {
-          days: projectDataPeriodToDays(period),
-          event_project_id: projectId,
-          ...query,
-        })
-        .then((response) => response.data),
-      label: label,
-      query: query,
-    })),
+    ].map(async ({ label, query }) => {
+      const result = await supabase.rpc('get_event_summary', {
+        days: projectDataPeriodToDays(period),
+        event_project_id: projectId,
+        ...query,
+      });
+
+      return {
+        label,
+        query,
+        result: result.data
+          ? ({
+              data: result.data,
+              type: 'success',
+            } as const)
+          : ({
+              error: result.error,
+              type: 'error',
+            } as const),
+      };
+    }),
   );
 
   return (
@@ -145,48 +154,48 @@ export const Project = async (props: Props) => {
       </Flex>
 
       <Flex direction="row" gap="5" justify="between">
-        <Grid columns={props.demo ? '3' : '2'} gap="4" grow="1" width="auto">
-          {eventSummaryQueries.map(({ data, label, query }) => (
+        <Grid columns="3" gap="4" grow="1" width="auto">
+          {eventSummaryQueries.map(({ label, query, result }) => (
             <Card key={query.group_type}>
               <Text weight="medium">{label}</Text>
 
               <Box my="2">
-                <ScrollArea
-                  scrollbars="vertical"
-                  style={{ height: 180 }}
-                  type="auto"
-                >
-                  <Box pr="5">
-                    <BarList
-                      color="cyan"
-                      data={data!.map((item) => {
-                        let name =
-                          item.grouped_column1 === null
-                            ? 'Other'
-                            : item.grouped_column1;
+                {result.type === 'success' ? (
+                  <ScrollArea
+                    scrollbars="vertical"
+                    style={{ height: 180 }}
+                    type="auto"
+                  >
+                    <Box pr="5">
+                      <BarList
+                        color="cyan"
+                        data={result.data.map((item) => {
+                          let name =
+                            item.grouped_column1 === null
+                              ? 'Other'
+                              : item.grouped_column1;
 
-                        if (item.grouped_column2) {
-                          name += ` ${item.grouped_column2}`;
-                        }
+                          if (item.grouped_column2) {
+                            name += ` ${item.grouped_column2}`;
+                          }
 
-                        return {
-                          name,
-                          value: item.event_count,
-                        };
-                      })}
-                    />
-                  </Box>
-                </ScrollArea>
+                          return {
+                            name,
+                            value: item.event_count,
+                          };
+                        })}
+                      />
+                    </Box>
+                  </ScrollArea>
+                ) : (
+                  <Text>
+                    {result.error.code} / {result.error.message}
+                  </Text>
+                )}
               </Box>
             </Card>
           ))}
         </Grid>
-
-        {props.demo ? null : (
-          <Box style={{ alignSelf: 'stretch', width: '35%' }}>
-            <ProjectAI />
-          </Box>
-        )}
       </Flex>
     </Flex>
   );

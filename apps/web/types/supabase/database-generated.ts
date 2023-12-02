@@ -27,17 +27,6 @@ export interface Database {
           grouped_column2: string;
         }[];
       };
-      get_event_summary_by_browser_name_and_major: {
-        Args: {
-          days: number;
-          event_project_id: number;
-        };
-        Returns: {
-          browser_major: string;
-          browser_name: string;
-          event_count: number;
-        }[];
-      };
     };
     Tables: {
       beta_signups: {

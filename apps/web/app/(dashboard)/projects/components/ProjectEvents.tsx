@@ -53,14 +53,13 @@ const ProjectEvent = async ({
     group_type: type,
   });
 
-  const data = query.data || [];
-
   if (query.error) {
     return (
       <CalloutRoot color="red">
         <CalloutIcon>
           <InfoCircledIcon />
         </CalloutIcon>
+
         <CalloutText>
           Failed to load data:
           <Code variant="outline">{query.error.message}</Code>
@@ -72,8 +71,8 @@ const ProjectEvent = async ({
   return (
     <Box pr="5">
       <BarList
-        color="cyan"
-        data={data.map((item) => {
+        color="gray"
+        data={query.data.map((item) => {
           let name =
             item.grouped_column1 === null ? 'Other' : item.grouped_column1;
 
@@ -93,7 +92,7 @@ const ProjectEvent = async ({
 
 const ProjectEventLoading = () => (
   <Flex direction="column" gap="2">
-    {Array.from({ length: 3 }).map((_, i) => (
+    {Array.from({ length: 4 }).map((_, i) => (
       <CalloutRoot className="animate-pulse" color="gray" key={i}>
         <Box height="2" width="100%" />
       </CalloutRoot>
@@ -120,7 +119,7 @@ export const ProjectEvents = async ({
       type: 'browser_name_major',
     },
     {
-      label: 'Engine',
+      label: 'Browser engine',
       type: 'engine',
     },
     {
@@ -138,7 +137,16 @@ export const ProjectEvents = async ({
   ];
 
   return (
-    <Grid columns="3" gap="4" grow="1" width="auto">
+    <Grid
+      columns={{
+        initial: '1',
+        md: '3',
+        sm: '2',
+      }}
+      gap="4"
+      grow="1"
+      width="auto"
+    >
       {eventGroups.map(({ label, type }) => (
         <Card key={type}>
           <Text weight="medium">{label}</Text>
@@ -146,7 +154,7 @@ export const ProjectEvents = async ({
           <Box my="2">
             <ScrollArea
               scrollbars="vertical"
-              style={{ height: 180 }}
+              style={{ height: 200 }}
               type="auto"
             >
               <Suspense fallback={<ProjectEventLoading />} key={type + period}>

@@ -10,7 +10,6 @@ module.exports = {
     'eslint-config-turbo',
     'plugin:perfectionist/recommended-natural',
   ],
-  plugins: ['only-warn'],
   globals: {
     React: true,
     JSX: true,

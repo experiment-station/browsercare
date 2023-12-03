@@ -18,7 +18,6 @@ module.exports = {
   env: {
     node: true,
   },
-  plugins: ['only-warn'],
   settings: {
     'import/resolver': {
       typescript: {
@@ -27,5 +26,9 @@ module.exports = {
     },
   },
   ignorePatterns: ['.*.js', 'node_modules/'],
-  overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
+  overrides: [
+    {
+      files: ['*.js?(x)', '*.ts?(x)'],
+    },
+  ],
 };

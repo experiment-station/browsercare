@@ -3,7 +3,7 @@ import { Button } from '@radix-ui/themes';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
-import { HeaderActionButtonAuthenticated } from './HeaderActionButtonAuthenticated';
+import { HeaderActionButtonAuthenticated } from './header-action-button-authenticated';
 
 export const HeaderActionButton = async () => {
   const supabase = createSupabaseServerClient(cookies());

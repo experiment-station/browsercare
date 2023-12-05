@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 
 import type { ProjectDataPeriod } from '../constants';
 
-import { ProjectEvents } from './ProjectEvents';
-import { ProjectPeriodSelect } from './ProjectPeriodSelect';
+import { ProjectEvents } from './project-events';
+import { ProjectPeriodSelect } from './project-period-selector';
 
 type Props = {
   period?: string;
@@ -51,7 +51,7 @@ export const Project = async (props: Props) => {
     .limit(1, { foreignTable: 'teams' })
     .maybeSingle();
 
-  if (!project.data) {
+  if (!project.data?.teams) {
     throw new Error('Project not found');
   }
 
@@ -59,7 +59,7 @@ export const Project = async (props: Props) => {
     <Flex direction="column" gap="4">
       <Flex direction="row" justify="between">
         <Heading>
-          {project.data.teams!.name}/{project.data.name}
+          {project.data.teams.name}/{project.data.name}
         </Heading>
 
         <ProjectPeriodSelect period={period} />

@@ -31,6 +31,7 @@
   "devDependencies": {
     "@browsercare/eslint-config": "workspace:*",
     "@browsercare/typescript-config": "workspace:*",
+    "@headlessui/tailwindcss": "^0.2.0",
     "@next/eslint-plugin-next": "^14.0.3",
     "@types/node": "^20.10.3",
     "@types/react": "^18.2.41",

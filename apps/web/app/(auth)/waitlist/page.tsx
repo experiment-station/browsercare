@@ -10,7 +10,7 @@ import {
 } from '@radix-ui/themes';
 import { redirect } from 'next/navigation';
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Heading size="6">Join the waitlist</Heading>
@@ -44,7 +44,6 @@ export default async function Page() {
           <Box>
             <TextFieldRoot>
               <TextFieldInput
-                autoFocus
                 name="email"
                 placeholder="Your e-mail address"
                 required

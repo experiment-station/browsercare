@@ -2,15 +2,16 @@
 
 import { Select } from '@radix-ui/themes';
 import { usePathname, useRouter } from 'next/navigation';
-import React from 'react';
 
-import { PROJECT_DATA_PERIODS, ProjectDataPeriod } from '../constants';
+import type { ProjectDataPeriod } from '../constants';
+
+import { PROJECT_DATA_PERIODS } from '../constants';
 
 type Props = {
   period: ProjectDataPeriod;
 };
 
-export const ProjectPeriodSelect = ({ period }: Props) => {
+export function ProjectPeriodSelect({ period }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -26,12 +27,12 @@ export const ProjectPeriodSelect = ({ period }: Props) => {
       <Select.Trigger />
 
       <Select.Content>
-        {PROJECT_DATA_PERIODS.map((period) => (
-          <Select.Item key={period.value} value={period.value}>
-            {period.label}
+        {PROJECT_DATA_PERIODS.map((p) => (
+          <Select.Item key={p.value} value={p.value}>
+            {p.label}
           </Select.Item>
         ))}
       </Select.Content>
     </Select.Root>
   );
-};
+}

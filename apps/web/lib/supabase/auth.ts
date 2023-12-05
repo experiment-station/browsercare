@@ -1,6 +1,9 @@
-import { Database } from '@/types/supabase/database';
-import { type CookieOptions, createServerClient } from '@supabase/ssr';
-import { type NextRequest, NextResponse } from 'next/server';
+import type { Database } from '@/types/supabase/database';
+import type { CookieOptions } from '@supabase/ssr';
+import type { NextRequest } from 'next/server';
+
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse } from 'next/server';
 
 export const getSupabaseAuthSession = async (request: NextRequest) => {
   let response = NextResponse.next({

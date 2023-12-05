@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
       const { data } = await supabase.auth.exchangeCodeForSession(code);
 
-      if (ALLOWED_USER_EMAILS.includes(data?.user?.email ?? '')) {
+      if (ALLOWED_USER_EMAILS.includes(data.user?.email ?? '')) {
         return NextResponse.redirect(new URL(`/${next.slice(1)}`, request.url));
       }
     }

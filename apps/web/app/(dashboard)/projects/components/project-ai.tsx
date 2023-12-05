@@ -13,7 +13,7 @@ import {
 } from '@radix-ui/themes';
 import { useChat } from 'ai/react';
 
-export const ProjectAI = () => {
+export function ProjectAI() {
   const { handleInputChange, handleSubmit, input, messages } = useChat({
     api: '/api/ai',
   });
@@ -56,4 +56,4 @@ export const ProjectAI = () => {
       </Flex>
     </Card>
   );
-};
+}

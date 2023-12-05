@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
+import type { PropsWithChildren } from 'react';
 
-import { Header } from '@/components/Header/Header';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { Header } from '@/components/header/header';
+import { ThemeProvider } from '@/components/theme-provider';
 import { Container, Theme } from '@radix-ui/themes';
-import { PropsWithChildren } from 'react';
 
 import { gtAmerica } from './fonts';
 import './style.css';

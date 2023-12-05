@@ -7,9 +7,9 @@ import {
   Link,
 } from '@radix-ui/themes';
 
-import { Project } from '../components/Project';
+import { Project } from '../components/project';
 
-export default async function Page({
+export default function Page({
   searchParams,
 }: {
   searchParams: { period?: string };

@@ -1,5 +1,6 @@
+import type { PropsWithChildren } from 'react';
+
 import { Flex } from '@radix-ui/themes';
-import { PropsWithChildren } from 'react';
 
 export default function Layout(props: PropsWithChildren) {
   return (

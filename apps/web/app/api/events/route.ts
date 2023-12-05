@@ -1,6 +1,8 @@
+import type { NextRequest } from 'next/server';
+
 import { createSupabaseServiceClient } from '@/lib/supabase/service';
 import { UAParser } from '@ua-parser-js/pro-business';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);

@@ -9,14 +9,11 @@ module.exports = {
     'turbo',
     'plugin:perfectionist/recommended-natural',
     ...[
-      '@vercel/style-guide/eslint/browser',
       '@vercel/style-guide/eslint/node',
-      '@vercel/style-guide/eslint/react',
-      '@vercel/style-guide/eslint/next',
       '@vercel/style-guide/eslint/typescript',
     ].map((config) => require.resolve(config)),
   ],
-  ignorePatterns: ['.*.js', 'node_modules/'],
+  ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   overrides: [
     {
       files: ['*.js?(x)', '*.ts?(x)'],

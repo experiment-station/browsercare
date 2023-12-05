@@ -1,4 +1,5 @@
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import type { createSupabaseServerClient } from '@/lib/supabase/server';
+
 import { InfoCircledIcon } from '@radix-ui/react-icons';
 import {
   Box,
@@ -73,8 +74,7 @@ const ProjectEvent = async ({
       <BarList
         color="gray"
         data={query.data.map((item) => {
-          let name =
-            item.grouped_column1 === null ? 'Other' : item.grouped_column1;
+          let name = item.grouped_column1 || 'Other';
 
           if (item.grouped_column2) {
             name += ` ${item.grouped_column2}`;
@@ -90,17 +90,19 @@ const ProjectEvent = async ({
   );
 };
 
-const ProjectEventLoading = () => (
-  <Flex direction="column" gap="2">
-    {Array.from({ length: 4 }).map((_, i) => (
-      <CalloutRoot className="animate-pulse" color="gray" key={i}>
-        <Box height="2" width="100%" />
-      </CalloutRoot>
-    ))}
-  </Flex>
-);
+function ProjectEventLoading() {
+  return (
+    <Flex direction="column" gap="2">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <CalloutRoot className="animate-pulse" color="gray" key={i}>
+          <Box height="2" width="100%" />
+        </CalloutRoot>
+      ))}
+    </Flex>
+  );
+}
 
-export const ProjectEvents = async ({
+export function ProjectEvents({
   period,
   projectId,
   supabase,
@@ -108,7 +110,7 @@ export const ProjectEvents = async ({
   period: ProjectDataPeriod;
   projectId: number;
   supabase: ReturnType<typeof createSupabaseServerClient>;
-}) => {
+}) {
   const eventGroups = [
     {
       label: 'Browser',
@@ -171,4 +173,4 @@ export const ProjectEvents = async ({
       ))}
     </Grid>
   );
-};
+}

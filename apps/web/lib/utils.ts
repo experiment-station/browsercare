@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export const enhanceHeaders = (request: NextRequest) => {
   const headers = request.headers;

@@ -1,5 +1,5 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
-import OpenAI from 'openai';
+import { OpenAI } from 'openai';
 
 export const runtime = 'edge';
 
@@ -8,7 +8,9 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages } = (await req.json()) as {
+    messages: OpenAI.Chat.ChatCompletionCreateParamsStreaming['messages'];
+  };
 
   const response = await openai.chat.completions.create({
     messages,

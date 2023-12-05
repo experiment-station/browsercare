@@ -5,7 +5,7 @@ import { Button } from '@radix-ui/themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export const HeaderActionButtonAuthenticated = () => {
+export function HeaderActionButtonAuthenticated() {
   const pathname = usePathname();
 
   return pathname.startsWith('/projects') ? (
@@ -23,4 +23,4 @@ export const HeaderActionButtonAuthenticated = () => {
       </Link>
     </Button>
   );
-};
+}

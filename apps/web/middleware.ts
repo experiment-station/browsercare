@@ -1,5 +1,7 @@
+import type { NextRequest } from 'next/server';
+
 import { getSupabaseAuthSession } from '@/lib/supabase/auth';
-import { type NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 import { enhanceHeaders } from './lib/utils';
 

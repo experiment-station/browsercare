@@ -1,4 +1,4 @@
-import { Project } from '../components/Project';
+import { Project } from '../components/project';
 
 export default function Page({
   params,

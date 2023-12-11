@@ -30,7 +30,7 @@ export default function Page() {
           await supabase.from('beta_signups').upsert({ email });
 
           const maskedEmail = email.replace(/^(.{3}).*@/, '$1***@');
-          await fetch(process.env.SLACK_WEBHOOK_URL!, {
+          await fetch(process.env.SLACK_POSTMAN_WEBHOOK_URL!, {
             body: JSON.stringify({
               text: `👾 New waitlist signup for *browsercare*: ${maskedEmail}`,
             }),

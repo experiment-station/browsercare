@@ -6,7 +6,7 @@
         "NEXT_PUBLIC_*",
         "SUPABASE_*",
         "OPENAI_API_KEY",
-        "SLACK_WEBHOOK_URL"
+        "SLACK_POSTMAN_WEBHOOK_URL"
       ],
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]

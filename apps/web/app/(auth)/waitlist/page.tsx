@@ -1,3 +1,4 @@
+import { env } from '@/env.mjs';
 import { createSupabaseServiceClient } from '@/lib/supabase/service';
 import {
   Button,
@@ -29,7 +30,7 @@ export default function Page() {
           await supabase.from('beta_signups').upsert({ email });
 
           const maskedEmail = email.replace(/^(.{3}).*@/, '$1***@');
-          await fetch(process.env.SLACK_POSTMAN_WEBHOOK_URL!, {
+          await fetch(env.SLACK_POSTMAN_WEBHOOK_URL, {
             body: JSON.stringify({
               text: `👾 New waitlist signup for *browsercare*: ${maskedEmail}`,
             }),

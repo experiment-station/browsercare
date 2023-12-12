@@ -3,21 +3,22 @@ import { Button } from '@radix-ui/themes';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
-import { HeaderActionButtonAuthenticated } from './header-action-button-authenticated';
+import { AppHeaderActionButtonAuthenticated } from './app-header-action-button-authenticated';
 
-export const HeaderActionButton = async () => {
+export const AppHeaderActionButton = async () => {
   const supabase = createSupabaseServerClient(cookies());
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
   if (session === null) {
     return (
-      <Button asChild>
-        <Link href="/waitlist">Join the waitlist</Link>
+      <Button asChild highContrast>
+        <Link href="/waitlist">Join waitlist</Link>
       </Button>
     );
   }
 
-  return <HeaderActionButtonAuthenticated />;
+  return <AppHeaderActionButtonAuthenticated />;
 };

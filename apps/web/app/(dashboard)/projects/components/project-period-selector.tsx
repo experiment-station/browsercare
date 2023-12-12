@@ -26,7 +26,7 @@ export function ProjectPeriodSelect({ period }: Props) {
     >
       <Select.Trigger />
 
-      <Select.Content>
+      <Select.Content highContrast>
         {PROJECT_DATA_PERIODS.map((p) => (
           <Select.Item key={p.value} value={p.value}>
             {p.label}

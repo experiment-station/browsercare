@@ -16,7 +16,7 @@ export default function Page({
 }) {
   return (
     <Flex direction="column" gap="6">
-      <CalloutRoot color="gray" size="3">
+      <CalloutRoot color="gray" size="2">
         <CalloutIcon>
           <InfoCircledIcon />
         </CalloutIcon>

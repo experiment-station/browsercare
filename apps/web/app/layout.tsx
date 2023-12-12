@@ -7,7 +7,7 @@ import '@/components/theme-provider/styles.css';
 import { gtAmerica } from './fonts';
 
 export const metadata: Metadata = {
-  description: '',
+  description: 'Privacy-centric, data-driven browser coverage tool.',
   title: 'browsercare',
 };
 

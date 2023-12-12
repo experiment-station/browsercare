@@ -6,7 +6,7 @@
   <h1>browsercare</h1>
 
   <p>
-    The monorepo of <a href="https://browser.care">browsercare</a>.
+    The monorepo of <a href="https://browser.care">browser.care</a>.
   </p>
 
   <p>

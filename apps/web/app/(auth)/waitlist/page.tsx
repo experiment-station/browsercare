@@ -1,6 +1,5 @@
 import { createSupabaseServiceClient } from '@/lib/supabase/service';
 import {
-  Box,
   Button,
   Flex,
   Heading,
@@ -12,8 +11,8 @@ import { redirect } from 'next/navigation';
 
 export default function Page() {
   return (
-    <>
-      <Heading size="6">Join the waitlist</Heading>
+    <Flex direction="column" gap="4">
+      <Heading size="6">Join waitlist</Heading>
 
       <Text color="gray">
         Become a friend of browsercare and help us to develop the tool that you
@@ -40,21 +39,21 @@ export default function Page() {
           redirect('/waitlist/thanks');
         }}
       >
-        <Flex direction="column" gap="2">
-          <Box>
-            <TextFieldRoot>
-              <TextFieldInput
-                name="email"
-                placeholder="Your e-mail address"
-                required
-                type="email"
-              />
-            </TextFieldRoot>
-          </Box>
+        <Flex direction="column" gap="2" width="100%">
+          <TextFieldRoot>
+            <TextFieldInput
+              name="email"
+              placeholder="Your e-mail address"
+              required
+              type="email"
+            />
+          </TextFieldRoot>
 
-          <Button type="submit">Submit</Button>
+          <Button highContrast type="submit">
+            Submit
+          </Button>
         </Flex>
       </form>
-    </>
+    </Flex>
   );
 }

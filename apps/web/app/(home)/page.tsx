@@ -15,9 +15,9 @@ export default async function Page() {
     <Flex
       align="center"
       direction="column"
-      gap="6"
-      mt="6"
+      gap="5"
       mx="auto"
+      py="5"
       style={{
         maxWidth: 'var(--container-2)',
       }}
@@ -26,12 +26,12 @@ export default async function Page() {
         Develop web apps confidently
       </Heading>
 
-      <Text align="center" color="gray" size="4">
+      <Text align="center" color="gray">
         We are building a <Strong>privacy-friendly</Strong> tool to help making
         data-driven decisions to adjust browser coverage of your web projects.
       </Text>
 
-      <Text align="center" color="gray" size="4">
+      <Text align="center" color="gray">
         Whether it&apos;s a website, a third-party integration, or a client-side
         library.
         <br />
@@ -47,11 +47,11 @@ export default async function Page() {
             }}
             gap="2"
           >
-            <Button asChild size="3">
-              <Link href="/waitlist">Join the waitlist</Link>
+            <Button asChild highContrast>
+              <Link href="/waitlist">Join waitlist</Link>
             </Button>
 
-            <Button asChild size="3" variant="outline">
+            <Button asChild highContrast variant="outline">
               <Link href="/projects/demo">
                 See the demo
                 <ArrowRightIcon />
@@ -59,7 +59,7 @@ export default async function Page() {
             </Button>
           </Flex>
         ) : (
-          <Button asChild size="3">
+          <Button asChild highContrast>
             <Link href="/projects">
               Go to your projects
               <ArrowRightIcon />

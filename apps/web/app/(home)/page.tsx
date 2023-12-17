@@ -51,7 +51,7 @@ export default async function Page() {
               <Link href="/waitlist">Join waitlist</Link>
             </Button>
 
-            <Button asChild highContrast variant="outline">
+            <Button asChild highContrast variant="soft">
               <Link href="/projects/demo">
                 See the demo
                 <ArrowRightIcon />

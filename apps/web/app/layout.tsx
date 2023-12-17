@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import '@/components/theme-provider/styles.css';
+import { Analytics } from '@vercel/analytics/react';
 
 import { gtAmerica } from './fonts';
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

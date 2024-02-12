@@ -90,8 +90,8 @@ importers:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
       remeda:
-        specifier: ^1.38.0
-        version: 1.38.0
+        specifier: ^1.40.1
+        version: 1.40.1
       ts-deepmerge:
         specifier: ^7.0.0
         version: 7.0.0
@@ -6128,8 +6128,8 @@ packages:
       jsesc: 0.5.0
     dev: true
 
-  /remeda@1.38.0:
-    resolution: {integrity: sha512-5as2nVwzgeLLXMk1v9SLi8CeT+LUzM0202AFo13WRCupQjLlfiyN1fhlY3LO0jSzP6AtA2M2PbjTY4sQKrrBfg==}
+  /remeda@1.40.1:
+    resolution: {integrity: sha512-p5HzqKlMK02mvnalm3mavRaUeRljqKoE7r0QgDDzbZ9C0jFowisYLPU9e52gCZOd7Dn6KAWTPbVucJtcPfAIxA==}
     dev: false
 
   /require-directory@2.1.1:

@@ -14,7 +14,7 @@
     "@typescript-eslint/parser": "^6.14.0",
     "@vercel/style-guide": "^5.1.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-turbo": "^1.11.1",
+    "eslint-config-turbo": "^1.12.5",
     "eslint-plugin-perfectionist": "^2.5.0",
     "typescript": "^5.3.3"
   }
